@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:WhatsAppClone/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 main() => runApp(MaterialApp(
-      home: MyApp(),
+      home: SplashScreen(),
     ));
 
 
