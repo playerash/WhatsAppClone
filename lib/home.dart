@@ -10,7 +10,20 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this, initialIndex: 1);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width;
@@ -20,8 +33,6 @@ class _HomeState extends State<Home> {
 
     var tamanhoLabelPadding =
         ((size) - (tamanhoCamera + tamanhoTextTab * 3)) / 8;
-
-        
 
     return DefaultTabController(
       length: 4,
@@ -37,6 +48,7 @@ class _HomeState extends State<Home> {
           ],
           backgroundColor: Theme.of(context).primaryColor,
           bottom: TabBar(
+            controller: _tabController,
             labelPadding: EdgeInsets.symmetric(horizontal: tamanhoLabelPadding),
             isScrollable: true,
             indicatorColor: Colors.white,
@@ -66,6 +78,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: TabBarView(
+          controller: _tabController,
           children: [
             CameraScreen(widget.cameras),
             Text("casa"),
