@@ -1,16 +1,23 @@
 import 'package:WhatsAppClone/home.dart';
 import 'package:WhatsAppClone/screens/splashscreen.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-main() => runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      brightness: Brightness.light,
-      primaryColor: Color(0xFF075E54),
-    ),
-    darkTheme: ThemeData(brightness: Brightness.dark),
-    //themeMode: ThemeMode.dark,
-    home: Home()));
+List<CameraDescription> cameras;
+Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Color(0xFF075E54),
+      ),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      //themeMode: ThemeMode.dark,
+      home: Home(cameras)));
+}
 
 class MyApp extends StatefulWidget {
   @override

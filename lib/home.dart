@@ -1,6 +1,11 @@
+import 'package:WhatsAppClone/screens/camerascreen.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+  List<CameraDescription> cameras;
+  Home(this.cameras);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -14,7 +19,9 @@ class _HomeState extends State<Home> {
     var tamanhoTextTab = (size - tamanhoCamera) / 4;
 
     var tamanhoLabelPadding =
-        ((size) - (tamanhoCamera + tamanhoTextTab*3))/8 ;
+        ((size) - (tamanhoCamera + tamanhoTextTab * 3)) / 8;
+
+        
 
     return DefaultTabController(
       length: 4,
@@ -58,14 +65,15 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          Text("OI"),
-          Text("casa"),
-          Text("G"),
-          Text("w")
-        ],),
+        body: TabBarView(
+          children: [
+            CameraScreen(widget.cameras),
+            Text("casa"),
+            Text("G"),
+            Text("w")
+          ],
+        ),
       ),
-      
     );
   }
 }
