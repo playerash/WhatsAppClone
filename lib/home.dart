@@ -58,7 +58,14 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+        body: TabBarView(children: [
+          Text("OI"),
+          Text("casa"),
+          Text("G"),
+          Text("w")
+        ],),
       ),
+      
     );
   }
 }

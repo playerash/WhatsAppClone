@@ -1,4 +1,4 @@
-import 'package:WhatsAppClone/screens/home.dart';
+import 'package:WhatsAppClone/home.dart';
 import 'package:WhatsAppClone/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
