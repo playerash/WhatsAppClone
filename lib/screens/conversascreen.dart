@@ -58,7 +58,15 @@ class _ConversaScreenState extends State<ConversaScreen> {
           },
         ),
       ),
-      
+      floatingActionButton: FloatingActionButton(
+        child: IconButton(
+          onPressed: (){},
+          color: Colors.white,
+          icon: Icon(Icons.chat),
+        ),
+        //backgroundColor: Colors.green,
+        onPressed: () {},
+      ),
     );
   }
 }

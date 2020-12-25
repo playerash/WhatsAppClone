@@ -13,7 +13,7 @@ Future<Null> main() async {
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color(0xFF075E54),
-        buttonColor: Color(0xFF25D366)
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xFF25D366))
       ),
       darkTheme: ThemeData(brightness: Brightness.dark),
       //themeMode: ThemeMode.dark,
