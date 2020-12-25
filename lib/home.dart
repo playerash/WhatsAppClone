@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
+import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        
         appBar: AppBar(
           title: Text("WhatsApp"),
           actions: [
@@ -82,7 +82,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
         body: TabBarView(
           controller: _tabController,
-          children: [CameraScreen(), ConversaScreen(), Text("G"), Text("w")],
+          children: [
+            CameraScreen(),
+            ConversaScreen(),
+            Text("G"),
+            ChamadaScreen(),
+          ],
         ),
       ),
     );
