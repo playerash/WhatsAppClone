@@ -1,4 +1,3 @@
-import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
@@ -6,8 +5,10 @@ import 'package:WhatsAppClone/screens/statusscreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+
+
 class Home extends StatefulWidget {
-  List<CameraDescription> cameras;
+  final List<CameraDescription> cameras;
   Home(this.cameras);
 
   @override
@@ -15,6 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+
+  
   int _floatController = 1; // controla o botão float baseado na TabBar
   TabController _tabController; // para controlar o index inicial da TabBar
   @override
@@ -106,7 +109,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         body: TabBarView(
           controller: _tabController,
           children: [
-            CameraScreen(),
+            CameraScreen(widget.cameras),
             ConversaScreen(),
             StatusScreen(),
             ChamadaScreen(),
