@@ -9,6 +9,8 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State<CameraScreen> {
+  
+
   CameraController _cameraController; //declarando um controlador de camera
 
   @override
@@ -22,6 +24,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     //enquanto a camera não carrega
     if (!_cameraController.value.isInitialized) {
       return Container(
@@ -30,7 +33,7 @@ class _CameraScreenState extends State<CameraScreen> {
     }
 
     return Stack(
-      alignment: Alignment.centerRight,
+      alignment: Alignment.bottomCenter,
       children: [
         Container(
           width: double.infinity,
@@ -41,6 +44,32 @@ class _CameraScreenState extends State<CameraScreen> {
             ),
           ),
         ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical:8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(icon: Icon(Icons.flash_off, color: Colors.white,size: 25,), onPressed: (){}),
+                  Container(
+                    height: size.width/5,
+                    width: size.height/5,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        shape: BoxShape.circle),
+                  ),
+                  IconButton(icon: Icon(Icons.switch_camera, color: Colors.white, size: 25,), onPressed: (){})
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Segure para vídeo, toque para foto", style: TextStyle(color: Colors.white),),
+            )
+          ],
+        )
       ],
     );
   }
