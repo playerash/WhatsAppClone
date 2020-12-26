@@ -3,7 +3,10 @@ import 'package:camera/camera.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
-  CameraScreen(this.cameras);
+  //final Function _mudarCamera;
+  CameraScreen(
+    this.cameras,
+  );
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
@@ -17,8 +20,8 @@ class _CameraScreenState extends State<CameraScreen> {
   void initState() {
     super.initState();
     //escolhendo qual camera usar e inicializando a camera
-    _cameraController =
-        CameraController(widget.cameras[0], ResolutionPreset.medium);
+    _cameraController = CameraController(
+        widget.cameras[0], ResolutionPreset.medium);
     _cameraController.initialize();
   }
 
@@ -48,25 +51,40 @@ class _CameraScreenState extends State<CameraScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical:8.0),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(icon: Icon(Icons.flash_off, color: Colors.white,size: 25,), onPressed: (){}),
+                  IconButton(
+                      icon: Icon(
+                        Icons.flash_off,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      onPressed: () {}),
                   Container(
-                    height: size.width/5,
-                    width: size.height/5,
+                    height: size.width / 5,
+                    width: size.height / 5,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 2),
                         shape: BoxShape.circle),
                   ),
-                  IconButton(icon: Icon(Icons.switch_camera, color: Colors.white, size: 25,), onPressed: (){})
+                  IconButton(
+                      icon: Icon(
+                        Icons.switch_camera,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      onPressed: (){})
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Segure para vídeo, toque para foto", style: TextStyle(color: Colors.white),),
+              child: Text(
+                "Segure para vídeo, toque para foto",
+                style: TextStyle(color: Colors.white),
+              ),
             )
           ],
         )

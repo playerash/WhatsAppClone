@@ -5,8 +5,6 @@ import 'package:WhatsAppClone/screens/statusscreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-
-
 class Home extends StatefulWidget {
   final List<CameraDescription> cameras;
   Home(this.cameras);
@@ -16,8 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-
-  
   int _floatController = 1; // controla o botão float baseado na TabBar
   TabController _tabController; // para controlar o index inicial da TabBar
   @override
@@ -55,6 +51,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    int _qualCamera = 0;
+    
+
     var size = MediaQuery.of(context).size.width;
 
     var tamanhoCamera = size / 15;
@@ -115,7 +114,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ChamadaScreen(),
           ],
         ),
-        
       ),
     );
   }
