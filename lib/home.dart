@@ -2,6 +2,7 @@ import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
+import 'package:WhatsAppClone/screens/statusscreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +15,33 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  int _floatController = 1; // controla o botão float baseado na TabBar
+  TabController _tabController; // para controlar o index inicial da TabBar
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this, initialIndex: 1);
+
+    //executa o controle do floatingActionButton
+    _tabController.addListener(() {
+      if (_tabController.index == 1) {
+        setState(() {
+          _floatController = 1;
+        });
+      } else if (_tabController.index == 2) {
+        setState(() {
+          _floatController = 2;
+        });
+      } else if (_tabController.index == 3) {
+        setState(() {
+          _floatController = 3;
+        });
+      } else {
+        setState(() {
+          _floatController = 0;
+        });
+      }
+    });
   }
 
   @override
@@ -85,10 +108,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           children: [
             CameraScreen(),
             ConversaScreen(),
-            Text("G"),
+            StatusScreen(),
             ChamadaScreen(),
           ],
         ),
+        
       ),
     );
   }
