@@ -1,9 +1,13 @@
+import 'package:WhatsAppClone/compomentes/FloatingButtonChamadas.dart';
+import 'package:WhatsAppClone/compomentes/FloatingButtonStatus.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
 import 'package:WhatsAppClone/screens/statusscreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+
+import 'compomentes/FloatingButtonConversas.dart';
 
 class Home extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -51,8 +55,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    int _qualCamera = 0;
-    
+
+    //Lista de FloatingButton que ira mudar de acordo com a tab bar
+    List<Widget> _floatingButtonHome = [null,FloatingButtonConversas(),FloatingButtonStatus(), FloatingButtonChamadas()];
 
     var size = MediaQuery.of(context).size.width;
 
@@ -114,6 +119,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ChamadaScreen(),
           ],
         ),
+        floatingActionButton: _floatingButtonHome[_tabController.index]
       ),
     );
   }

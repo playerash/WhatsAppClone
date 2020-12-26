@@ -10,8 +10,7 @@ class _ConversaScreenState extends State<ConversaScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Container(
+    return Container(
         child: ListView.separated(
           separatorBuilder: (context, index) {
             return Divider(
@@ -57,16 +56,6 @@ class _ConversaScreenState extends State<ConversaScreen> {
             );
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: IconButton(
-          onPressed: (){},
-          color: Colors.white,
-          icon: Icon(Icons.chat),
-        ),
-        //backgroundColor: Colors.green,
-        onPressed: () {},
-      ),
     );
   }
 }

@@ -49,15 +49,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: IconButton(
-          onPressed: (){},
-          color: Colors.white,
-          icon: Icon(Icons.phone),
-        ),
-        
-        onPressed: () {},
-      ),
+      
     );
   }
 }
