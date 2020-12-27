@@ -1,6 +1,7 @@
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/home.dart';
 import 'package:WhatsAppClone/screens/GerarRotas.dart';
+import 'package:WhatsAppClone/screens/aberturascreen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ List<CameraDescription> cameras; // para listar as cameras do celular
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized(); //usado quando tem algo além do runApp na main
   cameras = await availableCameras(); // lista as cameras do celular
+  
   runApp(
     MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -23,8 +25,8 @@ Future main() async {
         darkTheme: ThemeData(brightness: Brightness.dark),
         //themeMode: ThemeMode.dark,
         initialRoute: "/",
-        onGenerateRoute: GerarRotas(cameras).geradorRotas,
-        home: Home(cameras)),
+        //onGenerateRoute: GerarRotas(cameras).geradorRotas,
+        home: MyApp()),
   );
 }
 
@@ -36,6 +38,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return AberturaScreen(cameras);
   }
 }
