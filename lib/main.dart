@@ -21,6 +21,7 @@ Future main() async {
                 backgroundColor: Color(0xFF25D366))),
         darkTheme: ThemeData(brightness: Brightness.dark),
         //themeMode: ThemeMode.dark,
+        
         home: Home(cameras)),
   );
 }

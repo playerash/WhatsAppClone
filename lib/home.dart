@@ -138,7 +138,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ChamadaScreen(),
             ],
           ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: _floatingButtonHome[_tabController.index]),
+          
     );
   }
 }
