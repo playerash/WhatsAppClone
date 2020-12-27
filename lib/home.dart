@@ -43,7 +43,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       vsync: this,
       initialIndex: _floatController,
     );
-
+    
     //executa o controle do floatingActionButton
     _tabController.addListener(() {
       if (_tabController.index == 1) {
@@ -82,20 +82,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           appBar: AppBar(
             title: Text("WhatsApp"),
             actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () async {
-                    await showSearch(
-                      context: context,
-                      delegate: Pesquisa(telas[_floatController]),
-                    );
-                    setState(() {});
-                  },
-                ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () async {
+                  await showSearch(
+                    context: context,
+                    delegate: Pesquisa(telas[_floatController]),
+                  );
+                  setState(() {});
+                },
               ),
-              Icon(Icons.more_vert),
+              Padding(
+                padding: const EdgeInsets.only(right:8.0),
+                child: Icon(Icons.more_vert),
+              ),
             ],
             backgroundColor: Theme.of(context).primaryColor,
             bottom: TabBar(
@@ -130,6 +130,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ),
           body: TabBarView(
+          
             controller: _tabController,
             children: [
               CameraScreen(widget.cameras),

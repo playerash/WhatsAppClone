@@ -18,11 +18,12 @@ class _FloatingButtonChamadasState extends State<FloatingButtonChamadas> {
             height: size.height/9,
             child: FittedBox(
               child: FloatingActionButton(
+                heroTag: "bnt1",
                 backgroundColor: Color(0xffeef5f6),
                 child: Icon(
                   Icons.videocam,
                   color: Color(0xff4f7477),
-                  size: 30,
+                  size: size.width/10,
                 ),
                 onPressed: () {},
               ),
@@ -30,6 +31,7 @@ class _FloatingButtonChamadasState extends State<FloatingButtonChamadas> {
           ),
         
         FloatingActionButton(
+          heroTag: "bnt2",
           child:Icon(Icons.phone, color: Colors.white,),
           
           onPressed: () {},

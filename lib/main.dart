@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/home.dart';
+import 'package:WhatsAppClone/screens/GerarRotas.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,8 @@ Future main() async {
                 backgroundColor: Color(0xFF25D366))),
         darkTheme: ThemeData(brightness: Brightness.dark),
         //themeMode: ThemeMode.dark,
-        
+        initialRoute: "/",
+        onGenerateRoute: GerarRotas(cameras).geradorRotas,
         home: Home(cameras)),
   );
 }

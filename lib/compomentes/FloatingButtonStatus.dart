@@ -19,17 +19,19 @@ class _FloatingButtonStatusState extends State<FloatingButtonStatus> {
             height: size.height/9,
             child: FittedBox(
               child: FloatingActionButton(
+                heroTag: "bnt1",
                 backgroundColor: Color(0xffeef5f6),
                 child: Icon(
                   Icons.edit,
                   color: Color(0xff4f7477),
-                  size: 30,
+                  size: size.width/10,
                 ),
                 onPressed: () {},
               ),
             ),
           ),
         FloatingActionButton(
+          heroTag: "bnt2",
           child: Icon(
             Icons.camera_alt,
             color: Colors.white,
