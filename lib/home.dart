@@ -19,6 +19,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  List<Widget> telas = [
+    Container(),
+    ConversaScreen(),
+              StatusScreen(),
+              ChamadaScreen(),
+  ];
   //Lista de FloatingButton que ira mudar de acordo com a tab bar
   List<Widget> _floatingButtonHome = [
     null,
@@ -83,7 +89,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   onPressed: () async {
                     await showSearch(
                       context: context,
-                      delegate: Pesquisa(),
+                      delegate: Pesquisa(telas[_floatController]),
                     );
                     setState(() {});
                   },

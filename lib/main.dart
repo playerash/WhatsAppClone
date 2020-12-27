@@ -11,9 +11,6 @@ Future main() async {
   cameras = await availableCameras(); // lista as cameras do celular
   runApp(
     MaterialApp(
-      localizationsDelegates: [
-        CustomLocalizationDelegate(),
-      ],
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             brightness: Brightness.light,
