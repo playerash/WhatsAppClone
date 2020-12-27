@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/compomentes/FloatingButtonChamadas.dart';
 import 'package:WhatsAppClone/compomentes/FloatingButtonStatus.dart';
+import 'package:WhatsAppClone/compomentes/PopUpMenuHome.dart';
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
@@ -22,8 +23,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List<Widget> telas = [
     Container(),
     ConversaScreen(),
-              StatusScreen(),
-              ChamadaScreen(),
+    StatusScreen(),
+    ChamadaScreen(),
   ];
   //Lista de FloatingButton que ira mudar de acordo com a tab bar
   List<Widget> _floatingButtonHome = [
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     FloatingButtonChamadas()
   ];
 
-  int _floatController = 1; // controla o botão float baseado na TabBar
+  int _indexController = 1; // controla o botão float baseado na TabBar
   TabController _tabController; // para controlar o index inicial da TabBar
   @override
   void initState() {
@@ -41,30 +42,32 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     _tabController = TabController(
       length: 4,
       vsync: this,
-      initialIndex: _floatController,
+      initialIndex: _indexController,
     );
-    
+
     //executa o controle do floatingActionButton
     _tabController.addListener(() {
       if (_tabController.index == 1) {
         setState(() {
-          _floatController = 1;
+          _indexController = 1;
         });
       } else if (_tabController.index == 2) {
         setState(() {
-          _floatController = 2;
+          _indexController = 2;
         });
       } else if (_tabController.index == 3) {
         setState(() {
-          _floatController = 3;
+          _indexController = 3;
         });
       } else {
         setState(() {
-          _floatController = 0;
+          _indexController = 0;
         });
       }
     });
   }
+
+  List _popUpLista = [null, PopUpConversas(), PopUpStatus(), PopUpChamadas()];
 
   @override
   Widget build(BuildContext context) {
@@ -87,15 +90,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 onPressed: () async {
                   await showSearch(
                     context: context,
-                    delegate: Pesquisa(telas[_floatController]),
+                    delegate: Pesquisa(telas[_indexController]),
                   );
                   setState(() {});
                 },
               ),
               Padding(
-                padding: const EdgeInsets.only(right:8.0),
-                child: Icon(Icons.more_vert),
-              ),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: _popUpLista[_indexController],
+              )
             ],
             backgroundColor: Theme.of(context).primaryColor,
             bottom: TabBar(
@@ -130,7 +133,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ),
           body: TabBarView(
-          
             controller: _tabController,
             children: [
               CameraScreen(widget.cameras),
@@ -141,7 +143,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: _floatingButtonHome[_tabController.index]),
-          
     );
   }
 }
