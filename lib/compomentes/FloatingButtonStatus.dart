@@ -12,7 +12,7 @@ class _FloatingButtonStatusState extends State<FloatingButtonStatus> {
       child: IconButton(
         onPressed: () {},
         color: Colors.white,
-        icon: Icon(Icons.camera),
+        icon: Icon(Icons.camera_alt),
       ),
       onPressed: () {},
     );

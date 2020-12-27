@@ -1,3 +1,4 @@
+import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/home.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,9 @@ Future main() async {
   cameras = await availableCameras(); // lista as cameras do celular
   runApp(
     MaterialApp(
+      localizationsDelegates: [
+        CustomLocalizationDelegate(),
+      ],
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             brightness: Brightness.light,

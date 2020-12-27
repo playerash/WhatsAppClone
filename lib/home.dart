@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/compomentes/FloatingButtonChamadas.dart';
 import 'package:WhatsAppClone/compomentes/FloatingButtonStatus.dart';
+import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
@@ -18,12 +19,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  //Lista de FloatingButton que ira mudar de acordo com a tab bar
+  List<Widget> _floatingButtonHome = [
+    null,
+    FloatingButtonConversas(),
+    FloatingButtonStatus(),
+    FloatingButtonChamadas()
+  ];
+
   int _floatController = 1; // controla o botão float baseado na TabBar
   TabController _tabController; // para controlar o index inicial da TabBar
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this, initialIndex: 1);
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: _floatController,
+    );
 
     //executa o controle do floatingActionButton
     _tabController.addListener(() {
@@ -48,17 +61,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _tabController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-
-    //Lista de FloatingButton que ira mudar de acordo com a tab bar
-    List<Widget> _floatingButtonHome = [null,FloatingButtonConversas(),FloatingButtonStatus(), FloatingButtonChamadas()];
-
     var size = MediaQuery.of(context).size.width;
 
     var tamanhoCamera = size / 15;
@@ -70,57 +73,66 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("WhatsApp"),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Icon(Icons.search),
+          appBar: AppBar(
+            title: Text("WhatsApp"),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    await showSearch(
+                      context: context,
+                      delegate: Pesquisa(),
+                    );
+                    setState(() {});
+                  },
+                ),
+              ),
+              Icon(Icons.more_vert),
+            ],
+            backgroundColor: Theme.of(context).primaryColor,
+            bottom: TabBar(
+              controller: _tabController,
+              labelPadding:
+                  EdgeInsets.symmetric(horizontal: tamanhoLabelPadding),
+              isScrollable: true,
+              indicatorColor: Colors.white,
+              tabs: [
+                Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    width: tamanhoCamera,
+                    child: Tab(
+                      icon: Icon(
+                        Icons.camera_alt,
+                      ),
+                    )),
+                Container(
+                  width: tamanhoTextTab,
+                  child: Tab(text: "CONVERSAS"),
+                ),
+                Container(
+                  width: tamanhoTextTab,
+                  child: Tab(text: "STATUS"),
+                ),
+                Container(
+                  width: tamanhoTextTab,
+                  child: Tab(text: "CHAMADAS"),
+                ),
+              ],
             ),
-            Icon(Icons.more_vert),
-          ],
-          backgroundColor: Theme.of(context).primaryColor,
-          bottom: TabBar(
+          ),
+          body: TabBarView(
             controller: _tabController,
-            labelPadding: EdgeInsets.symmetric(horizontal: tamanhoLabelPadding),
-            isScrollable: true,
-            indicatorColor: Colors.white,
-            tabs: [
-              Container(
-                  height: 50,
-                  alignment: Alignment.center,
-                  width: tamanhoCamera,
-                  child: Tab(
-                    icon: Icon(
-                      Icons.camera_alt,
-                    ),
-                  )),
-              Container(
-                width: tamanhoTextTab,
-                child: Tab(text: "CONVERSAS"),
-              ),
-              Container(
-                width: tamanhoTextTab,
-                child: Tab(text: "STATUS"),
-              ),
-              Container(
-                width: tamanhoTextTab,
-                child: Tab(text: "CHAMADAS"),
-              ),
+            children: [
+              CameraScreen(widget.cameras),
+              ConversaScreen(),
+              StatusScreen(),
+              ChamadaScreen(),
             ],
           ),
-        ),
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            CameraScreen(widget.cameras),
-            ConversaScreen(),
-            StatusScreen(),
-            ChamadaScreen(),
-          ],
-        ),
-        floatingActionButton: _floatingButtonHome[_tabController.index]
-      ),
+          floatingActionButton: _floatingButtonHome[_tabController.index]),
     );
   }
 }
