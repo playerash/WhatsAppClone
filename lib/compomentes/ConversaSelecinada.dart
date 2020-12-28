@@ -6,9 +6,14 @@ class ConversaNaoSelecionada extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundImage: AssetImage(perfil),
-      radius: 30,
+    return Container(
+      margin: EdgeInsets.only(top: 8, left: 10),
+      child: Stack(
+            children:[ CircleAvatar(
+          backgroundImage: AssetImage(perfil),
+          radius: 25,
+        ),]
+      ),
     );
   }
 }
@@ -19,13 +24,14 @@ class ConversaSelecionada extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 8, left: 10),
       child: Stack(children: [
         CircleAvatar(
           backgroundImage: AssetImage(perfil),
-          radius: 30,
+          radius: 25,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 35, left: 40),
+          padding: const EdgeInsets.only(top: 35, left: 30),
           child: CircleAvatar(
             backgroundColor: Color(0xFF075E54),
             radius: 10,
@@ -41,9 +47,3 @@ class ConversaSelecionada extends StatelessWidget {
   }
 }
 
-class AppBarNaoSelecionada extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

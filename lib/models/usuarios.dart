@@ -9,5 +9,7 @@ class Contato {
 class ContatoConversa extends Contato {
   String mensagem;
   String data;
-  ContatoConversa(String nome, String imagem, this.mensagem, this.data) : super(nome, imagem);
+  bool selecionado = false;
+  ContatoConversa(String nome, String imagem, this.mensagem, this.data)
+      : super(nome, imagem);
 }

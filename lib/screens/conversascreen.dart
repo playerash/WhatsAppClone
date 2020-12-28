@@ -8,131 +8,132 @@ class ConversaScreen extends StatefulWidget {
 }
 
 class _ConversaScreenState extends State<ConversaScreen> {
-
- 
-  List _contatos = [
-    //ContatoConversa("Buri", "images/saburi.jpg", "Eu te amo", "25/12/2020"),
-    //ContatoConversa("Ana", "images/ana.jpg", "socoroo", "24/12/2020"),
-    {
-      "nome": "Buri Buri",
-      "imagem": "images/saburi.jpg",
-      "mensagem": "Eu te amo",
-      "data": "25/12/2020"
-    },
-    {
-      "nome": "Ana",
-      "imagem": "images/ana.jpg",
-      "mensagem": "Quando rolê?",
-      "data": "28/12/2020"
-    },
-    {
-      "nome": "Vini",
-      "imagem": "images/vini.jpg",
-      "mensagem": "Compra outro jogo pra mim?",
-      "data": "28/12/2020"
-    },
-    {
-      "nome": "Avatar",
-      "imagem": "images/avatar.jpg",
-      "mensagem": "Cadê meu ifood man?",
-      "data": "28/12/2020"
-    },
-    {
-      "nome": "Nat",
-      "imagem": "images/nat.jpg",
-      "mensagem": "Já superou?",
-      "data": "28/12/2020"
-    },
-    {
-      "nome": "Natan",
-      "imagem": "images/natan.jpg",
-      "mensagem": "Hackeia o insta dela ai man",
-      "data": "28/12/2020"
-    },
+  List<ContatoConversa> _contatos = [
+    ContatoConversa("Buri", "images/saburi.jpg", "Eu te amo", "28/12/2020"),
+    ContatoConversa("Ana", "images/ana.jpg", "Quando sai o rolê", "28/12/2020"),
+    ContatoConversa(
+        "Vini", "images/vini.jpg", "Compro outro jogo para mim?", "27/12/2020"),
+    ContatoConversa(
+        "Avatar", "images/avatar.jpg", "Cade meu ifood?", "26/12/2020"),
+    ContatoConversa("Nat", "images/nat.jpg", "Superou seu ex?", "26/12/2020"),
+    ContatoConversa("Natan", "images/natan.jpg", "Hackeia o insta dela ai man",
+        "25/12/2020"),
+    ContatoConversa(
+        "And", "images/and.jpg", "Consertou a antena?", "23/12/2020"),
   ];
 
-  bool _conversaSelecionada = false;
- 
-
+  bool _umaConversaSelecionada = false;
+  int _selecionados = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.separated(
-        separatorBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right:10.0, left: 60),
-            child: Divider(
-              
-              color: Colors.grey,
-            ),
-          );
-        },
-        itemCount: _contatos.length,
-        itemBuilder: (context, index) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _conversaSelecionada
-                  ? ConversaSelecionada(_contatos[index]["imagem"])
-                  : ConversaNaoSelecionada(_contatos[index]["imagem"]),
-              Container(
-                width: MediaQuery.of(context).size.width - 60,
-                height: 70,
-                child: ListTile(
+      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            ..._contatos.map((contato) {
+              return GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  print(contato.selecionado);
 
-                  selectedTileColor: Color(0xfff2f2f2),
-                  selected: _conversaSelecionada,
-                  onLongPress: () {
-                    if(index == 2){
-
-                    }
-                    print(index);
+                  if (_umaConversaSelecionada && !contato.selecionado && _selecionados !=0) {
+                    print("teste");
                     setState(() {
-                      _conversaSelecionada = true;
+                      _selecionados++;
+                      contato.selecionado = true;
                     });
-                  },
-                  onTap: _conversaSelecionada
-                      ? () {
-                          setState(() {
-                            _conversaSelecionada = false;
-                          });
-                        }
-                      : () {},
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        _contatos[index]["nome"],
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  } else if (contato.selecionado && _umaConversaSelecionada) {
+                    print(contato.selecionado);
+                    setState(() {
+                      _selecionados--;
+                      contato.selecionado = false;
+                    });
+                  }
+                },
+                onLongPress: () {
+                  print(contato.selecionado);
+
+                  setState(() {
+                    _selecionados++;
+                    _umaConversaSelecionada = true;
+                    contato.selecionado = true;
+                  });
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      color: contato.selecionado ? Color(0xfff2f2f2): Colors.white,
+                      width: double.infinity,
+                      height: 70,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          contato.selecionado
+                              ? ConversaSelecionada(contato.imagem)
+                              : ConversaNaoSelecionada(contato.imagem),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 22.0, left: 15, right: 10),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(contato.nome,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17)),
+                                      Text(
+                                        contato.data,
+                                        style: TextStyle(color: Colors.grey),
+                                      )
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 3.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.check,
+                                          color: Colors.grey,
+                                          size: 16,
+                                        ),
+                                        Text(contato.mensagem,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey))
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      Text(
-                        _contatos[index]["data"],
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                      )
-                    ],
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5.0),
-                        child: Icon(
-                          Icons.check,
+                    ),
+                    SizedBox(
+                      height: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:60.0, right: 10),
+                        child: Divider(
+       
                           color: Colors.grey,
-                          size: 16,
                         ),
                       ),
-                      Text(
-                        _contatos[index]["mensagem"],
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              ),
-            ],
-          );
-        },
+              );
+            })
+          ],
+        ),
       ),
+      
     );
   }
 }
