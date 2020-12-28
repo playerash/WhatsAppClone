@@ -1,3 +1,4 @@
+import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
 import 'package:flutter/material.dart';
 
 class ChamadaScreen extends StatefulWidget {
@@ -6,6 +7,7 @@ class ChamadaScreen extends StatefulWidget {
 }
 
 class _ChamadaScreenState extends State<ChamadaScreen> {
+  bool _conversaSelecionada = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +21,22 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
           itemCount: 1,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage("images/saburi.jpg"),
-                radius: 30,
-              ),
+              selectedTileColor: Color(0xfff2f2f2),
+            selected: _conversaSelecionada,
+            onLongPress: () {
+              setState(() {
+                _conversaSelecionada = true;
+              });
+            },
+            onTap: _conversaSelecionada
+                ? () {
+                    setState(() {
+                      _conversaSelecionada = false;
+                    });
+                  }
+                : () {},
+            leading: _conversaSelecionada
+                ? ConversaSelecionada(): ConversaNaoSelecionada(),
               title: Text(
                 "Diego Saburi",
                 style: TextStyle(fontWeight: FontWeight.bold),

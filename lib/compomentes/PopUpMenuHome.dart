@@ -33,16 +33,17 @@ class PopUpStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-        itemBuilder: (context) => [
-              PopupMenuItem(
-                child: Text("Privacidade do status"),
-                value: 1,
-              ),
-              PopupMenuItem(
-                child: Text("Configurações"),
-                value: 2,
-              ),
-            ]);
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          child: Text("Privacidade do status"),
+          value: 1,
+        ),
+        PopupMenuItem(
+          child: Text("Configurações"),
+          value: 2,
+        ),
+      ],
+    );
   }
 }
 
