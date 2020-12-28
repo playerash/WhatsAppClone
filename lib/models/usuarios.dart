@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
-class Usuario {
+class Contato {
   String nome;
-  int codigoNacional;
-  int ddd;
-  int numero;
   Image perfil;
+  Contato(this.nome, this.perfil);
+}
 
-  Usuario(this.nome, this.codigoNacional, this.ddd, this.numero, this.perfil);
+class ContatoConversa extends Contato {
+  String mesagem;
+  String dataMensagem;
+  ContatoConversa(String nome, Image perfil, this.mesagem, this.dataMensagem)
+      : super(nome, perfil);
 }
