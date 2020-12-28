@@ -36,7 +36,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                   }
                 : () {},
             leading: _conversaSelecionada
-                ? ConversaSelecionada(): ConversaNaoSelecionada(),
+                ? ConversaSelecionada("images/saburi.jpg"): ConversaNaoSelecionada("images/saburi.jpg"),
               title: Text(
                 "Diego Saburi",
                 style: TextStyle(fontWeight: FontWeight.bold),

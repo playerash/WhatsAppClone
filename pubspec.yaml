@@ -54,6 +54,12 @@ flutter:
   - images/whatsapplogo.png
   - images/saburi.jpg
   - images/alyson.jpg
+  - images/ana.jpg
+  - images/avatar.jpg
+  - images/natan.jpg
+  - images/vini.jpg
+  - images/nat.jpg
+  - images/and.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
