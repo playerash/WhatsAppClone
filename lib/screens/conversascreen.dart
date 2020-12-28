@@ -52,15 +52,19 @@ class _ConversaScreenState extends State<ConversaScreen> {
   ];
 
   bool _conversaSelecionada = false;
-  List selecionados = [];
+ 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.separated(
         separatorBuilder: (context, index) {
-          return Divider(
-            color: Colors.grey,
+          return Padding(
+            padding: const EdgeInsets.only(right:10.0, left: 60),
+            child: Divider(
+              
+              color: Colors.grey,
+            ),
           );
         },
         itemCount: _contatos.length,
@@ -79,6 +83,9 @@ class _ConversaScreenState extends State<ConversaScreen> {
                   selectedTileColor: Color(0xfff2f2f2),
                   selected: _conversaSelecionada,
                   onLongPress: () {
+                    if(index == 2){
+
+                    }
                     print(index);
                     setState(() {
                       _conversaSelecionada = true;
