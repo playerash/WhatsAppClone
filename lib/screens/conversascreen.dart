@@ -65,7 +65,7 @@ class _ConversaScreenState extends State<ConversaScreen> {
                     Container(
                       color: contato.selecionado ? Color(0xfff2f2f2): Colors.white,
                       width: double.infinity,
-                      height: 70,
+                      height: 82,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,

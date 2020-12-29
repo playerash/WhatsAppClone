@@ -8,14 +8,15 @@ class AberturaScreen extends StatelessWidget {
   AberturaScreen(this.cameras);
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Container(
         color: Colors.white,
         padding: EdgeInsets.only(top: 100),
         width: double.infinity,
         child: Stack(alignment: Alignment.center, children: [
-          SplashScreen(
+          
+          //utilizada para facilitar o uso de uma tela de abertura
+          SplashScreen( 
             loaderColor: Colors.transparent,
             backgroundColor: Colors.white,
             seconds: 2,

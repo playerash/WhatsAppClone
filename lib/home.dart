@@ -20,14 +20,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  
-
-  List<Widget> telas = [
+  //Lista para barra de pesquisa de cada tab bar
+  List<Widget> _telas = [
     Container(),
     ConversaScreen(),
     StatusScreen(),
     ChamadaScreen(),
   ];
+
   //Lista de FloatingButton que ira mudar de acordo com a tab bar
   List<Widget> _floatingButtonHome = [
     null,
@@ -69,15 +69,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     });
   }
 
-  List _popUpLista = [null, PopUpConversas(), PopUpStatus(), PopUpChamadas()];
+  //os 3 pontinhos da appbar
+  List _popUpLista = [
+    null,
+    PopUpConversas(),
+    PopUpStatus(),
+    PopUpChamadas(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width;
-
     var tamanhoCamera = size / 15;
     var tamanhoTextTab = (size - tamanhoCamera) / 4;
-
     var tamanhoLabelPadding =
         ((size) - (tamanhoCamera + tamanhoTextTab * 3)) / 8;
 
@@ -87,22 +91,25 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           appBar: AppBar(
             title: Text("WhatsApp"),
             actions: [
+              //botão de pesquisa
               IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () async {
+                  //abrir a área de pesquisa
                   await showSearch(
                     context: context,
-                    delegate: Pesquisa(telas[_indexController]),
+                    delegate: Pesquisa(_telas[_indexController]),
                   );
-                  setState(() {});
                 },
               ),
+              //executando os 3 pontinhos
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: _popUpLista[_indexController],
               )
             ],
             backgroundColor: Theme.of(context).primaryColor,
+            //
             bottom: TabBar(
               controller: _tabController,
               labelPadding:
@@ -143,6 +150,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ChamadaScreen(),
             ],
           ),
+          //floating button baseado na tab bar
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: _floatingButtonHome[_tabController.index]),
     );

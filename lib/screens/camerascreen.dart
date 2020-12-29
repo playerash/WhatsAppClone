@@ -3,25 +3,20 @@ import 'package:camera/camera.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
-  //final Function _mudarCamera;
-  CameraScreen(
-    this.cameras,
-  );
+  CameraScreen(this.cameras);
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
 
 class _CameraScreenState extends State<CameraScreen> {
-  
-
   CameraController _cameraController; //declarando um controlador de camera
 
   @override
   void initState() {
     super.initState();
     //escolhendo qual camera usar e inicializando a camera
-    _cameraController = CameraController(
-        widget.cameras[0], ResolutionPreset.medium);
+    _cameraController =
+        CameraController(widget.cameras[0], ResolutionPreset.medium);
     _cameraController.initialize();
   }
 
@@ -34,7 +29,7 @@ class _CameraScreenState extends State<CameraScreen> {
         color: Colors.black,
       );
     }
-
+  //Camera carregada
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -42,6 +37,7 @@ class _CameraScreenState extends State<CameraScreen> {
           width: double.infinity,
           child: AspectRatio(
             aspectRatio: _cameraController.value.aspectRatio,
+            // Faz com que a camera seja visualizada na tela
             child: CameraPreview(
               _cameraController,
             ),
@@ -75,7 +71,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         color: Colors.white,
                         size: 25,
                       ),
-                      onPressed: (){})
+                      onPressed: () {})
                 ],
               ),
             ),
