@@ -29,6 +29,7 @@ class _ConversaScreenState extends State<ConversaScreen> {
     return Container(
       color: Colors.white,
       child: SingleChildScrollView(
+        
         child: Column(
           children: [
             ..._contatos.map((contato) {
@@ -37,7 +38,9 @@ class _ConversaScreenState extends State<ConversaScreen> {
                 onTap: () {
                   print(contato.selecionado);
 
-                  if (_umaConversaSelecionada && !contato.selecionado && _selecionados !=0) {
+                  if (_umaConversaSelecionada &&
+                      !contato.selecionado &&
+                      _selecionados != 0) {
                     print("teste");
                     setState(() {
                       _selecionados++;
@@ -62,8 +65,19 @@ class _ConversaScreenState extends State<ConversaScreen> {
                 },
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60.0, right: 10),
+                        child: Divider(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
                     Container(
-                      color: contato.selecionado ? Color(0xfff2f2f2): Colors.white,
+                      color: contato.selecionado
+                          ? Color(0xfff2f2f2)
+                          : Colors.white,
                       width: double.infinity,
                       height: 70,
                       child: Row(
@@ -116,24 +130,21 @@ class _ConversaScreenState extends State<ConversaScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:60.0, right: 10),
-                        child: Divider(
-       
-                          color: Colors.grey,
-                        ),
-                      ),
-                    )
+                    
                   ],
                 ),
               );
-            })
+            }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Toque e segure uma conversa para mais opções",
+                style: TextStyle(color: Colors.black54, fontSize: 12),
+              ),
+            )
           ],
         ),
       ),
-      
     );
   }
 }
