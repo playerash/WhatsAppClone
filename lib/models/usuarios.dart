@@ -31,3 +31,16 @@ class ContatoChamada extends Contato {
     this.iconTipoChamada,
   ) : super(nome, imagem);
 }
+
+class ContatoStatus extends Contato {
+  List<String> imagens;
+  String hora;
+
+  ContatoStatus(
+    String nome,
+    String imagem,
+    this.imagens,
+    this.hora,
+  ) : super(nome, imagem);
+
+}
