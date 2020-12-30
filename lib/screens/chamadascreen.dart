@@ -10,10 +10,10 @@ class ChamadaScreen extends StatefulWidget {
 
 class _ChamadaScreenState extends State<ChamadaScreen> {
   List<ContatoChamada> _contatos = [
-    ContatoChamada("Ana", "images/ana.jpg", 1, "Hoje 17:00", 1),
-    ContatoChamada("Avatar", "images/avatar.jpg", 0, "Hoje 12:00", 0),
+    ContatoChamada("Ana", "images/ana.jpg", 1, "Hoje ","17:00", 1),
+    ContatoChamada("Avatar", "images/avatar.jpg", 0, "Hoje ","12:00", 0),
     ContatoChamada(
-        "Diego Saburi", "images/saburi.jpg", 2, "28 de dezembro 13:00", 1),
+        "Diego Saburi", "images/saburi.jpg", 2, "28 de dezembro ","13:00", 1),
   ];
   bool _umaChamadaSelecionada = false;
   int _selecionados = 0;
@@ -123,7 +123,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                                         child: Row(
                                           children: [
                                             _iconChamada,
-                                            Text(contato.data,
+                                            Text(contato.data + contato.hora,
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     color: Colors.grey))

@@ -20,6 +20,7 @@ class ContatoConversa extends Contato {
 class ContatoChamada extends Contato {
   int iconChamada;
   String data;
+  String hora;
   int iconTipoChamada;
   bool selecionado = false;
 
@@ -28,6 +29,7 @@ class ContatoChamada extends Contato {
     String imagem,
     this.iconChamada,
     this.data,
+    this.hora,
     this.iconTipoChamada,
   ) : super(nome, imagem);
 }
@@ -42,5 +44,4 @@ class ContatoStatus extends Contato {
     this.imagens,
     this.hora,
   ) : super(nome, imagem);
-
 }
