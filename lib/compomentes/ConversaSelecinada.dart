@@ -18,6 +18,24 @@ class ConversaNaoSelecionada extends StatelessWidget {
   }
 }
 
+
+class ConversaChat extends StatelessWidget {
+  final String perfil;
+  ConversaChat(this.perfil);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(right: 5),
+      child: Stack(
+            children:[ CircleAvatar(
+          backgroundImage: AssetImage(perfil),
+          radius: 20,
+        ),]
+      ),
+    );
+  }
+}
+
 class ConversaSelecionada extends StatelessWidget {
   final String perfil;
   ConversaSelecionada(this.perfil);

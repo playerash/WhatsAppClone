@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
+import 'package:WhatsAppClone/screens/chatscreen.dart';
 import 'package:flutter/material.dart';
 
 class ConversaScreen extends StatefulWidget {
@@ -29,7 +30,6 @@ class _ConversaScreenState extends State<ConversaScreen> {
     return Container(
       color: Colors.white,
       child: SingleChildScrollView(
-        
         child: Column(
           children: [
             ..._contatos.map((contato) {
@@ -52,6 +52,9 @@ class _ConversaScreenState extends State<ConversaScreen> {
                       _selecionados--;
                       contato.selecionado = false;
                     });
+                  } else {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ChatScreen(contato)));
                   }
                 },
                 onLongPress: () {
@@ -130,7 +133,6 @@ class _ConversaScreenState extends State<ConversaScreen> {
                         ],
                       ),
                     ),
-                    
                   ],
                 ),
               );

@@ -1,5 +1,5 @@
-
 import 'package:WhatsAppClone/home.dart';
+import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/status_page_view.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,8 @@ class GerarRotas {
     switch (settings.name) {
       case "/":
         return MaterialPageRoute(builder: (_) => Home(cameras));
-   
+      case "/camera":
+        return MaterialPageRoute(builder: (_) => CameraScreen(cameras));
     }
   }
 }
