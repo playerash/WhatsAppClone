@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
+import 'package:WhatsAppClone/screens/interiorChamada.dart';
 import 'package:flutter/material.dart';
 
 class ChamadaScreen extends StatefulWidget {
@@ -75,6 +76,11 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                           _selecionados--;
                           contato.selecionado = false;
                         });
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => InteriorChamada(contato)));
                       }
                     },
                     onLongPress: () {
