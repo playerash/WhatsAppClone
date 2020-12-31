@@ -1,11 +1,11 @@
 import 'package:WhatsAppClone/home.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
-import 'package:WhatsAppClone/screens/camerascreen.dart';
-import 'package:WhatsAppClone/screens/chatscreen.dart';
+import 'package:WhatsAppClone/screens/camera_screen.dart';
+import 'package:WhatsAppClone/screens/chat_screen.dart';
 import 'package:WhatsAppClone/screens/contatos_chamadas.dart';
 import 'package:WhatsAppClone/screens/contatos_conversas.dart';
-import 'package:WhatsAppClone/screens/conversascreen.dart';
-import 'package:WhatsAppClone/screens/interiorChamada.dart';
+import 'package:WhatsAppClone/screens/conversa_screen.dart';
+import 'package:WhatsAppClone/screens/interior_chamada.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 

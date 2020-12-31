@@ -1,16 +1,16 @@
-import 'package:WhatsAppClone/compomentes/FloatingButtonChamadas.dart';
-import 'package:WhatsAppClone/compomentes/FloatingButtonStatus.dart';
-import 'package:WhatsAppClone/compomentes/PopUpMenuHome.dart';
+import 'package:WhatsAppClone/compomentes/floating_button_chamadas.dart';
+import 'package:WhatsAppClone/compomentes/floating_button_status.dart';
+import 'package:WhatsAppClone/compomentes/pop_up_menu_home.dart';
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
-import 'package:WhatsAppClone/screens/camerascreen.dart';
-import 'package:WhatsAppClone/screens/chamadascreen.dart';
-import 'package:WhatsAppClone/screens/conversascreen.dart';
-import 'package:WhatsAppClone/screens/statusscreen.dart';
+import 'package:WhatsAppClone/screens/camera_screen.dart';
+import 'package:WhatsAppClone/screens/chamada_screen.dart';
+import 'package:WhatsAppClone/screens/conversa_screen.dart';
+import 'package:WhatsAppClone/screens/status_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-import 'compomentes/FloatingButtonConversas.dart';
+import 'compomentes/floating_button_conversas.dart';
 
 class Home extends StatefulWidget {
   final List<ContatoConversa> _contatoConversa;

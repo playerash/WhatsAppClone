@@ -1,4 +1,4 @@
-import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
+import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/status_page_view.dart';
 import 'package:flutter/material.dart';

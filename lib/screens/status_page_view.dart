@@ -1,5 +1,5 @@
-import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
-import 'statusscreen.dart';
+import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
+import 'status_screen.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:flutter/material.dart';
 import 'package:story_view/controller/story_controller.dart';

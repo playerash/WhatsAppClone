@@ -1,7 +1,7 @@
-import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
-import 'package:WhatsAppClone/compomentes/PopUpMenuHome.dart';
+import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
+import 'package:WhatsAppClone/compomentes/pop_up_menu_home.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
-import 'package:WhatsAppClone/screens/chatscreen.dart';
+import 'package:WhatsAppClone/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 class ListaChamada extends StatefulWidget {

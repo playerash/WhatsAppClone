@@ -1,5 +1,5 @@
-import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
-import 'package:WhatsAppClone/compomentes/PopUpMenuHome.dart';
+import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
+import 'package:WhatsAppClone/compomentes/pop_up_menu_home.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:flutter/material.dart';
 

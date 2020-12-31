@@ -1,4 +1,4 @@
-import 'package:WhatsAppClone/GerarRotas.dart';
+import 'package:WhatsAppClone/gerar_rotas.dart';
 import 'package:WhatsAppClone/screens/abertura_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
