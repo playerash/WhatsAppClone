@@ -20,8 +20,7 @@ Future main() async {
             floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Color(0xFF25D366),
             )),
-        darkTheme: ThemeData(brightness: Brightness.dark),
-        //themeMode: ThemeMode.dark,
+
         initialRoute: "/",
         
         onGenerateRoute: GerarRotas(cameras).geradorRotas,
