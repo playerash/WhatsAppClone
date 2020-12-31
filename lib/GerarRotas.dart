@@ -1,10 +1,13 @@
 import 'package:WhatsAppClone/home.dart';
+import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
+import 'package:WhatsAppClone/screens/floatingconversainterior.dart';
 import 'package:WhatsAppClone/screens/status_page_view.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class GerarRotas {
+ 
   List<CameraDescription> cameras;
   GerarRotas(this.cameras);
   Route<dynamic> geradorRotas(RouteSettings settings) {
@@ -13,6 +16,7 @@ class GerarRotas {
         return MaterialPageRoute(builder: (_) => Home(cameras));
       case "/camera":
         return MaterialPageRoute(builder: (_) => CameraScreen(cameras));
+   
     }
   }
 }

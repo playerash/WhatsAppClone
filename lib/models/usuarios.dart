@@ -1,6 +1,7 @@
 class Contato {
   String nome;
   String imagem;
+  bool selecionado = false;
   Contato(this.nome, this.imagem);
 }
 

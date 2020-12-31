@@ -126,3 +126,28 @@ class PopUpChatMais extends StatelessWidget {
             ]);;
   }
 }
+
+class PopUpListaContatos extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+        itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("Convidar um amigo"),
+                value: 1,
+              ),
+              PopupMenuItem(
+                child: Text("Contatos"),
+                value: 2,
+              ),
+              PopupMenuItem(
+                child: Text("Atualizar"),
+                value: 3,
+              ),
+              PopupMenuItem(
+                child: Text("Ajuda"),
+                value: 4,
+              ),
+            ]);
+  }
+}

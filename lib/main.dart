@@ -1,7 +1,7 @@
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/home.dart';
-import 'package:WhatsAppClone/screens/GerarRotas.dart';
-import 'package:WhatsAppClone/screens/aberturascreen.dart';
+import 'package:WhatsAppClone/GerarRotas.dart';
+import 'package:WhatsAppClone/screens/abertura_screen.dart';
 import 'package:WhatsAppClone/screens/status_page_view.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
