@@ -1,20 +1,23 @@
+import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:flutter/material.dart';
 
 class FloatingButtonConversas extends StatefulWidget {
   @override
-  _FloatingButtonConversasState createState() => _FloatingButtonConversasState();
+  _FloatingButtonConversasState createState() =>
+      _FloatingButtonConversasState();
 }
 
 class _FloatingButtonConversasState extends State<FloatingButtonConversas> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: IconButton(
-        onPressed: () {},
+      child: Icon(
+        Icons.chat,
         color: Colors.white,
-        icon: Icon(Icons.chat),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, "contatos_conversa");
+      },
     );
   }
 }

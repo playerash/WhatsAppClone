@@ -2,6 +2,7 @@ import 'package:WhatsAppClone/compomentes/FloatingButtonChamadas.dart';
 import 'package:WhatsAppClone/compomentes/FloatingButtonStatus.dart';
 import 'package:WhatsAppClone/compomentes/PopUpMenuHome.dart';
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
+import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camerascreen.dart';
 import 'package:WhatsAppClone/screens/chamadascreen.dart';
 import 'package:WhatsAppClone/screens/conversascreen.dart';
@@ -12,22 +13,17 @@ import 'package:flutter/material.dart';
 import 'compomentes/FloatingButtonConversas.dart';
 
 class Home extends StatefulWidget {
+  final List<ContatoConversa> _contatoConversa;
+  final List<ContatoChamada> _contatoChamada;
   final List<CameraDescription> cameras;
-  Home(this.cameras);
+  Home(this.cameras,this._contatoConversa,this._contatoChamada);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  //Lista para barra de pesquisa de cada tab bar
-  List<Widget> _telas = [
-    Container(),
-    ConversaScreen(),
-    StatusScreen(),
-    ChamadaScreen(),
-  ];
-
+ 
   //Lista de FloatingButton que ira mudar de acordo com a tab bar
   List<Widget> _floatingButtonHome = [
     null,
@@ -79,6 +75,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+     //Lista para barra de pesquisa de cada tab bar
+  List<Widget> _telas = [
+    Container(),
+    ConversaScreen(widget._contatoConversa),
+    StatusScreen(),
+    ChamadaScreen(widget._contatoChamada),
+  ];
+
     var size = MediaQuery.of(context).size.width;
     var tamanhoCamera = size / 15;
     var tamanhoTextTab = (size - tamanhoCamera) / 4;
@@ -145,9 +149,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             controller: _tabController,
             children: [
               CameraScreen(widget.cameras),
-              ConversaScreen(),
+              ConversaScreen(widget._contatoConversa),
               StatusScreen(),
-              ChamadaScreen(),
+              ChamadaScreen(widget._contatoChamada),
             ],
           ),
           //floating button baseado na tab bar

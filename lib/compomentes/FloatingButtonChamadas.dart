@@ -12,29 +12,31 @@ class _FloatingButtonChamadasState extends State<FloatingButtonChamadas> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-
         Container(
-            width: size.width/9,
-            height: size.height/9,
-            child: FittedBox(
-              child: FloatingActionButton(
-                heroTag: "bnt1",
-                backgroundColor: Color(0xffeef5f6),
-                child: Icon(
-                  Icons.videocam,
-                  color: Color(0xff4f7477),
-                  size: size.width/10,
-                ),
-                onPressed: () {},
+          width: size.width / 9,
+          height: size.height / 9,
+          child: FittedBox(
+            child: FloatingActionButton(
+              heroTag: "bnt1",
+              backgroundColor: Color(0xffeef5f6),
+              child: Icon(
+                Icons.videocam,
+                color: Color(0xff4f7477),
+                size: size.width / 10,
               ),
+              onPressed: () {},
             ),
           ),
-        
+        ),
         FloatingActionButton(
           heroTag: "bnt2",
-          child:Icon(Icons.phone, color: Colors.white,),
-          
-          onPressed: () {},
+          child: Icon(
+            Icons.phone,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, "contatos_chamada");
+          },
         ),
       ],
     );

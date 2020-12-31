@@ -1,26 +1,17 @@
 import 'package:WhatsAppClone/compomentes/ConversaSelecinada.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
+import 'package:WhatsAppClone/screens/chatscreen.dart';
 import 'package:flutter/material.dart';
 
 class ConversaScreen extends StatefulWidget {
+  final List<ContatoConversa> _contatos;
+  ConversaScreen(this._contatos);
   @override
   _ConversaScreenState createState() => _ConversaScreenState();
 }
 
 class _ConversaScreenState extends State<ConversaScreen> {
-  List<ContatoConversa> _contatos = [
-    ContatoConversa("Buri", "images/saburi.jpg", "Eu te amo", "28/12/2020"),
-    ContatoConversa("Ana", "images/ana.jpg", "Quando sai o rolê", "28/12/2020"),
-    ContatoConversa(
-        "Vini", "images/vini.jpg", "Compro outro jogo para mim?", "27/12/2020"),
-    ContatoConversa(
-        "Avatar", "images/avatar.jpg", "Cade meu ifood?", "26/12/2020"),
-    ContatoConversa("Nat", "images/nat.jpg", "Superou seu ex?", "26/12/2020"),
-    ContatoConversa("Natan", "images/natan.jpg", "Hackeia o insta dela ai man",
-        "25/12/2020"),
-    ContatoConversa(
-        "And", "images/and.jpg", "Consertou a antena?", "23/12/2020"),
-  ];
+  
 
   bool _umaConversaSelecionada = false;
   int _selecionados = 0;
@@ -31,13 +22,15 @@ class _ConversaScreenState extends State<ConversaScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            ..._contatos.map((contato) {
+            ...widget._contatos.map((contato) {
               return GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   print(contato.selecionado);
 
-                  if (_umaConversaSelecionada && !contato.selecionado && _selecionados !=0) {
+                  if (_umaConversaSelecionada &&
+                      !contato.selecionado &&
+                      _selecionados != 0) {
                     print("teste");
                     setState(() {
                       _selecionados++;
@@ -49,6 +42,9 @@ class _ConversaScreenState extends State<ConversaScreen> {
                       _selecionados--;
                       contato.selecionado = false;
                     });
+                  } else {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ChatScreen(contato)));
                   }
                 },
                 onLongPress: () {
@@ -62,8 +58,19 @@ class _ConversaScreenState extends State<ConversaScreen> {
                 },
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60.0, right: 10),
+                        child: Divider(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
                     Container(
-                      color: contato.selecionado ? Color(0xfff2f2f2): Colors.white,
+                      color: contato.selecionado
+                          ? Color(0xfff2f2f2)
+                          : Colors.white,
                       width: double.infinity,
                       height: 82,
                       child: Row(
@@ -116,24 +123,20 @@ class _ConversaScreenState extends State<ConversaScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:60.0, right: 10),
-                        child: Divider(
-       
-                          color: Colors.grey,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               );
-            })
+            }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Toque e segure uma conversa para mais opções",
+                style: TextStyle(color: Colors.black54, fontSize: 12),
+              ),
+            )
           ],
         ),
       ),
-      
     );
   }
 }
