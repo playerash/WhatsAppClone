@@ -7,7 +7,7 @@ class ConversaNaoSelecionada extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 8, left: 10),
+      margin: EdgeInsets.only(top: 15, left: 10),
       child: Stack(
             children:[ CircleAvatar(
           backgroundImage: AssetImage(perfil),
