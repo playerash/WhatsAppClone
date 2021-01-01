@@ -6,6 +6,7 @@ import 'package:WhatsAppClone/screens/contatos_chamadas.dart';
 import 'package:WhatsAppClone/screens/contatos_conversas.dart';
 import 'package:WhatsAppClone/screens/conversa_screen.dart';
 import 'package:WhatsAppClone/screens/interior_chamada.dart';
+import 'package:WhatsAppClone/screens/status_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -38,12 +39,14 @@ class GerarRotas {
         return MaterialPageRoute(builder: (_) => Home(cameras, _contatoConversa,_contatoChamada));
       case "/camera":
         return MaterialPageRoute(builder: (_) => CameraScreen(cameras));
-      case "conversa":
+      case "/conversa":
         return MaterialPageRoute(builder: (_) => ConversaScreen(_contatoConversa));
-      case "contatos_conversa":
+      case "/contatos_conversa":
         return MaterialPageRoute(builder: (_) => BotaoConversa(_contatoConversa));
-      case "contatos_chamada":
+      case "/contatos_chamada":
         return MaterialPageRoute(builder: (_) => ListaChamada(_contatoChamada));
+      case "/status":
+        return MaterialPageRoute(builder: (_) => StatusScreen());
     }
   }
 }

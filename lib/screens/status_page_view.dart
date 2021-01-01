@@ -18,18 +18,23 @@ class _StatusPageViewState extends State<StatusPageView> {
   @override
   Widget build(BuildContext context) {
     final List<StoryItem> _storyItens = [
-      ...widget._contato.imagens.map(
-        (contato) => StoryItem(Image.asset(contato,fit: BoxFit.fill, ),
-            duration: Duration(seconds: 5), shown: false),
-      )
+      ...widget._contato.imagens
+          .map((contato) => StoryItem.inlineProviderImage(AssetImage(contato)))
     ];
     return Material(
-        child: Stack(
-          
-          children: [
+        child: Stack(children: [
       StoryView(
         storyItems: _storyItens,
         controller: _statusController,
+        inline: true,
+        repeat: false,
+        progressPosition: ProgressPosition.top,
+        onStoryShow: (s) {
+          print("mostrando story");
+        },
+        onComplete: () {
+          Navigator.pop(context);
+        },
       ),
     ]));
   }

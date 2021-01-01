@@ -35,7 +35,7 @@ class _FloatingButtonChamadasState extends State<FloatingButtonChamadas> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pushNamed(context, "contatos_chamada");
+            Navigator.pushNamed(context, "/contatos_chamada");
           },
         ),
       ],

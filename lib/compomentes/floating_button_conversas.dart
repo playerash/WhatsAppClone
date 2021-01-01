@@ -16,7 +16,7 @@ class _FloatingButtonConversasState extends State<FloatingButtonConversas> {
         color: Colors.white,
       ),
       onPressed: () {
-        Navigator.pushNamed(context, "contatos_conversa");
+        Navigator.pushNamed(context, "/contatos_conversa");
       },
     );
   }

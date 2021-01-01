@@ -1,4 +1,3 @@
-import 'package:WhatsAppClone/screens/camera_screen.dart';
 import 'package:flutter/material.dart';
 
 class FloatingButtonStatus extends StatefulWidget {
