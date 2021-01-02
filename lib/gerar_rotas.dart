@@ -44,9 +44,7 @@ class GerarRotas {
       case "/contatos_conversa":
         return MaterialPageRoute(builder: (_) => BotaoConversa(_contatoConversa));
       case "/contatos_chamada":
-        return MaterialPageRoute(builder: (_) => ListaChamada(_contatoChamada));
-      case "/status":
-        return MaterialPageRoute(builder: (_) => StatusScreen());
+        return MaterialPageRoute(builder: (_) => ListaChamada(_contatoChamada)); 
     }
   }
 }
