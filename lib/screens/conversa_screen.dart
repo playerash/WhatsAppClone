@@ -25,6 +25,7 @@ class _ConversaScreenState extends State<ConversaScreen> {
             ...widget._contatos.map((contato) {
               return GestureDetector(
                 behavior: HitTestBehavior.translucent,
+                // Selecão de conversas ou entrar na conversa
                 onTap: () {
                   print(contato.selecionado);
 

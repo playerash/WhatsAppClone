@@ -82,7 +82,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     StatusScreen(),
     ChamadaScreen(widget._contatoChamada),
   ];
-
+  // ajustando o tamanho de cada tab bar
     var size = MediaQuery.of(context).size.width;
     var tamanhoCamera = size / 15;
     var tamanhoTextTab = (size - tamanhoCamera) / 4;

@@ -1,16 +1,6 @@
 class Contato {
   String nome;
   String imagem;
-  bool selecionado = false;
-  String mensagem;
-  String dataMensagem;
-  int iconChamada;
-  String dataChamada;
-  String horaChamada;
-  int iconTipoChamada;
-  List<String> imagensStatus;
-  String horaStatus;
-
   Contato(this.nome, this.imagem);
 }
 

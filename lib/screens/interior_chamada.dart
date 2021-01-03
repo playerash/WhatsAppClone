@@ -16,6 +16,7 @@ class _InteriorChamadaState extends State<InteriorChamada> {
     //define as chamadas recebidas
     String _textoChamada;
     Widget _iconChamada;
+    //Definindo o tipo de chamada
     if (widget._contato.iconChamada == 0) {
       _textoChamada = "Efetuada";
       _iconChamada = Icon(

@@ -59,6 +59,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                   }
                   return GestureDetector(
                     behavior: HitTestBehavior.translucent,
+                    //definições de seleção ou mudança de pagina
                     onTap: () {
                       if (_umaChamadaSelecionada &&
                           !contato.selecionado &&

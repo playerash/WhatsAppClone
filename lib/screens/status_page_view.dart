@@ -1,5 +1,3 @@
-import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
-import 'status_screen.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:flutter/material.dart';
 import 'package:story_view/controller/story_controller.dart';
@@ -19,10 +17,12 @@ class _StatusPageViewState extends State<StatusPageView> {
   Widget build(BuildContext context) {
     final List<StoryItem> _storyItens = [
       ...widget._contato.imagens
+      // inserindo imagens do stts
           .map((contato) => StoryItem.inlineProviderImage(AssetImage(contato)))
     ];
     return Material(
         child: Stack(children: [
+          // mostrando os stts
       StoryView(
         storyItems: _storyItens,
         controller: _statusController,

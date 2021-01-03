@@ -13,29 +13,16 @@ Future main() async {
     MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            brightness: Brightness.light,
-            primaryColor: Color(0xFF075E54),
-            accentColor: Color(0xFF25D366),
-            buttonTheme: ButtonThemeData(buttonColor: Color(0xFF25D366)),
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Color(0xFF25D366),
-            )),
-
+          brightness: Brightness.light,
+          primaryColor: Color(0xFF075E54),
+          accentColor: Color(0xFF25D366),
+          buttonTheme: ButtonThemeData(buttonColor: Color(0xFF25D366)),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Color(0xFF25D366),
+          ),
+        ),
         initialRoute: "/",
-        
         onGenerateRoute: GerarRotas(cameras).geradorRotas,
         home: AberturaScreen(cameras)),
   );
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
 }

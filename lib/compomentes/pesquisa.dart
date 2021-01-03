@@ -1,5 +1,3 @@
-import 'package:WhatsAppClone/screens/conversa_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Pesquisa extends SearchDelegate<String> {

@@ -20,7 +20,16 @@ class _BotaoConversaState extends State<BotaoConversa> {
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text("Contatos"), Text(widget._contato.length.toString() + " contatos", style: TextStyle(fontSize: 13, color: Colors.grey[400],),)],
+          children: [
+            Text("Contatos"),
+            Text(
+              widget._contato.length.toString() + " contatos",
+              style: TextStyle(
+                fontSize: 13,
+                color: Colors.grey[400],
+              ),
+            )
+          ],
         ),
         actions: [
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
@@ -38,7 +47,10 @@ class _BotaoConversaState extends State<BotaoConversa> {
                   CircleAvatar(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.green,
-                    child: Icon(Icons.group, color: Colors.white,),
+                    child: Icon(
+                      Icons.group,
+                      color: Colors.white,
+                    ),
                     radius: 20,
                   ),
                   Padding(
@@ -55,7 +67,10 @@ class _BotaoConversaState extends State<BotaoConversa> {
                   CircleAvatar(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.green,
-                    child: Icon(Icons.person_add, color: Colors.white,),
+                    child: Icon(
+                      Icons.person_add,
+                      color: Colors.white,
+                    ),
                     radius: 20,
                   ),
                   Padding(
@@ -66,39 +81,12 @@ class _BotaoConversaState extends State<BotaoConversa> {
               ),
             ),
             ...widget._contato.map((contato) => GestureDetector(
-              behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  print(contato.selecionado);
-
-                  if (_umaConversaSelecionada &&
-                      !contato.selecionado &&
-                      _selecionados != 0) {
-                    print("teste");
-                    setState(() {
-                      _selecionados++;
-                      contato.selecionado = true;
-                    });
-                  } else if (contato.selecionado && _umaConversaSelecionada) {
-                    print(contato.selecionado);
-                    setState(() {
-                      _selecionados--;
-                      contato.selecionado = false;
-                    });
-                  } else {
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (_) => ChatScreen(contato)));
-                  }
-                },
-                onLongPress: () {
-                  print(contato.selecionado);
-
-                  setState(() {
-                    _selecionados++;
-                    _umaConversaSelecionada = true;
-                    contato.selecionado = true;
-                  });
-                },
-                          child: Padding(
+                  },
+                  child: Padding(
                     padding: const EdgeInsets.only(
                       top: 8.0,
                       bottom: 8,
@@ -117,7 +105,7 @@ class _BotaoConversaState extends State<BotaoConversa> {
                       ),
                     ),
                   ),
-            ))
+                ))
           ],
         ),
       ),
