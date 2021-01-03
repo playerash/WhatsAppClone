@@ -14,6 +14,7 @@ class AberturaScreen extends StatefulWidget {
 class _AberturaScreenState extends State<AberturaScreen> {
   @override
   void initState() {
+    //Carregando a tela inicial por 3 segundos
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, "/home");
     });
