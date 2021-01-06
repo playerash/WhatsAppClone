@@ -73,9 +73,6 @@ class PopUpChat extends StatefulWidget {
 }
 
 class _PopUpChatState extends State<PopUpChat> {
-  final bool _mais = false;
-
-  List casa = [];
 
   @override
   Widget build(BuildContext context) {

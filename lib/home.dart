@@ -15,11 +15,13 @@ import 'compomentes/floating_button_conversas.dart';
 class Home extends StatefulWidget {
   final List<ContatoConversa> _contatoConversa;
   final List<ContatoChamada> _contatoChamada;
+  final List<ContatoStatus> _contatoStatus;
   final List<CameraDescription> cameras;
   Home(
     this.cameras,
     this._contatoConversa,
     this._contatoChamada,
+    this._contatoStatus,
   );
 
   @override
@@ -92,7 +94,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     List<Widget> _telas = [
       Container(),
       ConversaScreen(widget._contatoConversa),
-      StatusScreen(),
+      StatusScreen(widget._contatoStatus),
       ChamadaScreen(widget._contatoChamada),
     ];
     // ajustando o tamanho de cada tab bar
@@ -164,7 +166,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             children: [
               CameraScreen(widget.cameras),
               ConversaScreen(widget._contatoConversa),
-              StatusScreen(),
+              StatusScreen(widget._contatoStatus),
               ChamadaScreen(widget._contatoChamada),
             ],
           ),

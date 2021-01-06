@@ -4,19 +4,14 @@ import 'package:WhatsAppClone/screens/status_page_view.dart';
 import 'package:flutter/material.dart';
 
 class StatusScreen extends StatefulWidget {
+  final List<ContatoStatus> _contatos;
+  StatusScreen(this._contatos);
   @override
   _StatusScreenState createState() => _StatusScreenState();
 }
 
 class _StatusScreenState extends State<StatusScreen> {
-  List<ContatoStatus> _contatos = [
-    ContatoStatus(
-      "Buri",
-      "images/saburi.jpg",
-      ["images/teste.jpg", "images/vini.jpg"],
-      "Há 9 minutos",
-    )
-  ];
+  
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xfff6f4f4),
@@ -74,7 +69,7 @@ class _StatusScreenState extends State<StatusScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    ..._contatos.map(
+                    ...widget._contatos.map(
                       (contato) {
                         return GestureDetector(
                           behavior: HitTestBehavior.translucent,
