@@ -11,18 +11,21 @@ Future main() async {
 
   runApp(
     MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Color(0xFF075E54),
-          accentColor: Color(0xFF25D366),
-          buttonTheme: ButtonThemeData(buttonColor: Color(0xFF25D366)),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF25D366),
-          ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Color(0xFF075E54),
+        accentColor: Color(0xFF25D366),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Color(0xFF25D366),
         ),
-        initialRoute: "/",
-        onGenerateRoute: GerarRotas(cameras).geradorRotas,
-        home: AberturaScreen(cameras)),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF25D366),
+        ),
+      ),
+      initialRoute: "/",
+      onGenerateRoute: GerarRotas(cameras).geradorRotas,
+      home: AberturaScreen(cameras),
+    ),
   );
 }

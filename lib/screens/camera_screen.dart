@@ -17,11 +17,15 @@ class _CameraScreenState extends State<CameraScreen> {
     //escolhendo qual camera usar e inicializando a camera
     _cameraController =
         CameraController(widget.cameras[0], ResolutionPreset.medium);
-    _cameraController.initialize().then((_) {
-      setState(() {});
-    });
+    _cameraController.initialize().then(
+      (_) {
+        setState(
+          () {},
+        );
+      },
+    );
   }
- 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -31,9 +35,9 @@ class _CameraScreenState extends State<CameraScreen> {
         color: Colors.black,
       );
     }
-  //Camera carregada
+    //Camera carregada
     return Material(
-          child: Stack(
+      child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Container(
@@ -56,12 +60,13 @@ class _CameraScreenState extends State<CameraScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                        icon: Icon(
-                          Icons.flash_off,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                        onPressed: () {}),
+                      icon: Icon(
+                        Icons.flash_off,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      onPressed: () {},
+                    ),
                     Container(
                       height: size.width / 5,
                       width: size.height / 5,
@@ -70,12 +75,13 @@ class _CameraScreenState extends State<CameraScreen> {
                           shape: BoxShape.circle),
                     ),
                     IconButton(
-                        icon: Icon(
-                          Icons.switch_camera,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                        onPressed: () {})
+                      icon: Icon(
+                        Icons.switch_camera,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      onPressed: () {},
+                    )
                   ],
                 ),
               ),

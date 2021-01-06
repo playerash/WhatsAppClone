@@ -29,7 +29,10 @@ class _ListaChamadaState extends State<ListaChamada> {
           ],
         ),
         actions: [
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
           PopUpListaContatos(),
         ],
       ),
@@ -77,44 +80,52 @@ class _ListaChamadaState extends State<ListaChamada> {
                 ],
               ),
             ),
-            ...widget._contato.map((contato) => GestureDetector(            
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8.0,
-                      bottom: 8,
-                      left: 8,
-                    ),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+            ...widget._contato.map(
+              (contato) => GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    bottom: 8,
+                    left: 8,
+                  ),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            ConversaChat(contato.imagem),
+                            Text(
+                              contato.nome,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Row(
                             children: [
-                              ConversaChat(contato.imagem),
-                              Text(
-                                contato.nome,
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 25.0),
+                                child: Icon(
+                                  Icons.videocam,
+                                  color: Color(0xFF075E54),
+                                ),
+                              ),
+                              Icon(
+                                Icons.phone,
+                                color: Color(0xFF075E54),
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:20.0),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right:25.0),
-                                  child: Icon(Icons.videocam, color: Color(0xFF075E54)),
-                                ),
-                                Icon(Icons.phone, color: Color(0xFF075E54)),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
-                ))
+                ),
+              ),
+            )
           ],
         ),
       ),

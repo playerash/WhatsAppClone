@@ -1,4 +1,3 @@
-import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:flutter/material.dart';
 
 class FloatingButtonConversas extends StatefulWidget {

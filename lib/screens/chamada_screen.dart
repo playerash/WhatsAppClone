@@ -11,18 +11,18 @@ class ChamadaScreen extends StatefulWidget {
 }
 
 class _ChamadaScreenState extends State<ChamadaScreen> {
-  
   bool _umaChamadaSelecionada = false;
   int _selecionados = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          color: Colors.white,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                ...widget._contatos.map((contato) {
+        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ...widget._contatos.map(
+                (contato) {
                   //define se a chamada foi de video ou não
                   Widget _iconTipoChamada;
                   if (contato.iconTipoChamada == 0) {
@@ -64,29 +64,37 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                       if (_umaChamadaSelecionada &&
                           !contato.selecionado &&
                           _selecionados != 0) {
-                        setState(() {
-                          _selecionados++;
-                          contato.selecionado = true;
-                        });
+                        setState(
+                          () {
+                            _selecionados++;
+                            contato.selecionado = true;
+                          },
+                        );
                       } else if (contato.selecionado &&
                           _umaChamadaSelecionada) {
-                        setState(() {
-                          _selecionados--;
-                          contato.selecionado = false;
-                        });
+                        setState(
+                          () {
+                            _selecionados--;
+                            contato.selecionado = false;
+                          },
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => InteriorChamada(contato)));
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => InteriorChamada(contato),
+                          ),
+                        );
                       }
                     },
                     onLongPress: () {
-                      setState(() {
-                        _selecionados++;
-                        _umaChamadaSelecionada = true;
-                        contato.selecionado = true;
-                      });
+                      setState(
+                        () {
+                          _selecionados++;
+                          _umaChamadaSelecionada = true;
+                          contato.selecionado = true;
+                        },
+                      );
                     },
                     child: Column(
                       children: [
@@ -111,20 +119,24 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(contato.nome,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17)),
+                                      Text(
+                                        contato.nome,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17),
+                                      ),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(top: 3.0),
                                         child: Row(
                                           children: [
                                             _iconChamada,
-                                            Text(contato.data + contato.hora,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.grey))
+                                            Text(
+                                              contato.data + contato.hora,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.grey),
+                                            )
                                           ],
                                         ),
                                       )
@@ -151,10 +163,12 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                       ],
                     ),
                   );
-                })
-              ],
-            ),
-          )),
+                },
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

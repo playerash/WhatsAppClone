@@ -11,10 +11,11 @@ class Pesquisa extends SearchDelegate<String> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          close(context, "");
-        });
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, "");
+      },
+    );
   }
 
   @override
@@ -28,4 +29,3 @@ class Pesquisa extends SearchDelegate<String> {
     return tela;
   }
 }
-

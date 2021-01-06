@@ -11,7 +11,11 @@ class StatusScreen extends StatefulWidget {
 class _StatusScreenState extends State<StatusScreen> {
   List<ContatoStatus> _contatos = [
     ContatoStatus(
-        "Buri", "images/saburi.jpg", ["images/teste.jpg", "images/vini.jpg"], "Há 9 minutos")
+      "Buri",
+      "images/saburi.jpg",
+      ["images/teste.jpg", "images/vini.jpg"],
+      "Há 9 minutos",
+    )
   ];
   Widget build(BuildContext context) {
     return Container(
@@ -25,24 +29,26 @@ class _StatusScreenState extends State<StatusScreen> {
             child: ListTile(
               //foto do perfil
               leading: Container(
-                child: Stack(children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage("images/alyson.jpg"),
-                    radius: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 35, left: 40),
-                    child: CircleAvatar(
-                      backgroundColor: Theme.of(context).accentColor,
-                      radius: 10,
-                      child: Icon(
-                        Icons.add,
-                        size: 20,
-                        color: Colors.white,
-                      ),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage("images/alyson.jpg"),
+                      radius: 30,
                     ),
-                  )
-                ]),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35, left: 40),
+                      child: CircleAvatar(
+                        backgroundColor: Theme.of(context).accentColor,
+                        radius: 10,
+                        child: Icon(
+                          Icons.add,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
 
               title: Text(
@@ -63,86 +69,100 @@ class _StatusScreenState extends State<StatusScreen> {
             ),
           ),
           Expanded(
-              child: Container(
-            color: Colors.white,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ..._contatos.map((contato) {
-                    return GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => StatusPageView(contato)));
-                      },
-                      onLongPress: () {},
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 0,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 60.0, right: 10),
-                              child: Divider(
-                                color: Colors.grey,
+            child: Container(
+              color: Colors.white,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ..._contatos.map(
+                      (contato) {
+                        return GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => StatusPageView(contato),
                               ),
-                            ),
-                          ),
-                          Container(
-                            color: Colors.white,
-                            width: double.infinity,
-                            height: 70,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                ConversaNaoSelecionada(contato
-                                    .imagens[contato.imagens.length - 1]),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 22.0, left: 15, right: 10),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                            );
+                          },
+                          onLongPress: () {},
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 60.0, right: 10),
+                                  child: Divider(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                color: Colors.white,
+                                width: double.infinity,
+                                height: 70,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    ConversaNaoSelecionada(
+                                      contato
+                                          .imagens[contato.imagens.length - 1],
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 22.0, left: 15, right: 10),
+                                        child: Column(
                                           children: [
-                                            Text(contato.nome,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 17)),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  contato.nome,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 3.0),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    contato.hora,
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            )
                                           ],
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 3.0),
-                                          child: Row(
-                                            children: [
-                                              Text(contato.hora,
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Colors.grey))
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  }),
-                ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ))
+          )
         ],
       ),
     );

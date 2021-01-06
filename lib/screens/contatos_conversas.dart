@@ -12,8 +12,6 @@ class BotaoConversa extends StatefulWidget {
 }
 
 class _BotaoConversaState extends State<BotaoConversa> {
-  bool _umaConversaSelecionada = false;
-  int _selecionados = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +30,10 @@ class _BotaoConversaState extends State<BotaoConversa> {
           ],
         ),
         actions: [
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
           PopUpListaContatos(),
         ],
       ),
@@ -80,32 +81,38 @@ class _BotaoConversaState extends State<BotaoConversa> {
                 ],
               ),
             ),
-            ...widget._contato.map((contato) => GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => ChatScreen(contato)));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8.0,
-                      bottom: 8,
-                      left: 8,
+            ...widget._contato.map(
+              (contato) => GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ChatScreen(contato),
                     ),
-                    child: Container(
-                      child: Row(
-                        children: [
-                          ConversaChat(contato.imagem),
-                          Text(
-                            contato.nome,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    bottom: 8,
+                    left: 8,
+                  ),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        ConversaChat(contato.imagem),
+                        Text(
+                          contato.nome,
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
                   ),
-                ))
+                ),
+              ),
+            )
           ],
         ),
       ),

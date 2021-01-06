@@ -16,14 +16,17 @@ class Home extends StatefulWidget {
   final List<ContatoConversa> _contatoConversa;
   final List<ContatoChamada> _contatoChamada;
   final List<CameraDescription> cameras;
-  Home(this.cameras,this._contatoConversa,this._contatoChamada);
+  Home(
+    this.cameras,
+    this._contatoConversa,
+    this._contatoChamada,
+  );
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
- 
   //Lista de FloatingButton que ira mudar de acordo com a tab bar
   List<Widget> _floatingButtonHome = [
     null,
@@ -44,25 +47,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
 
     //executa o controle do floatingActionButton
-    _tabController.addListener(() {
-      if (_tabController.index == 1) {
-        setState(() {
-          _indexController = 1;
-        });
-      } else if (_tabController.index == 2) {
-        setState(() {
-          _indexController = 2;
-        });
-      } else if (_tabController.index == 3) {
-        setState(() {
-          _indexController = 3;
-        });
-      } else {
-        setState(() {
-          _indexController = 0;
-        });
-      }
-    });
+    _tabController.addListener(
+      () {
+        if (_tabController.index == 1) {
+          setState(
+            () {
+              _indexController = 1;
+            },
+          );
+        } else if (_tabController.index == 2) {
+          setState(
+            () {
+              _indexController = 2;
+            },
+          );
+        } else if (_tabController.index == 3) {
+          setState(
+            () {
+              _indexController = 3;
+            },
+          );
+        } else {
+          setState(
+            () {
+              _indexController = 0;
+            },
+          );
+        }
+      },
+    );
   }
 
   //os 3 pontinhos da appbar
@@ -75,14 +88,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-     //Lista para barra de pesquisa de cada tab bar
-  List<Widget> _telas = [
-    Container(),
-    ConversaScreen(widget._contatoConversa),
-    StatusScreen(),
-    ChamadaScreen(widget._contatoChamada),
-  ];
-  // ajustando o tamanho de cada tab bar
+    //Lista para barra de pesquisa de cada tab bar
+    List<Widget> _telas = [
+      Container(),
+      ConversaScreen(widget._contatoConversa),
+      StatusScreen(),
+      ChamadaScreen(widget._contatoChamada),
+    ];
+    // ajustando o tamanho de cada tab bar
     var size = MediaQuery.of(context).size.width;
     var tamanhoCamera = size / 15;
     var tamanhoTextTab = (size - tamanhoCamera) / 4;
@@ -122,14 +135,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               indicatorColor: Colors.white,
               tabs: [
                 Container(
-                    height: 50,
-                    alignment: Alignment.center,
-                    width: tamanhoCamera,
-                    child: Tab(
-                      icon: Icon(
-                        Icons.camera_alt,
-                      ),
-                    )),
+                  height: 50,
+                  alignment: Alignment.center,
+                  width: tamanhoCamera,
+                  child: Tab(
+                    icon: Icon(
+                      Icons.camera_alt,
+                    ),
+                  ),
+                ),
                 Container(
                   width: tamanhoTextTab,
                   child: Tab(text: "CONVERSAS"),

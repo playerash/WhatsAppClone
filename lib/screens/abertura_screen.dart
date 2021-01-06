@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-
 class AberturaScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
   AberturaScreen(this.cameras);
@@ -15,9 +14,12 @@ class _AberturaScreenState extends State<AberturaScreen> {
   @override
   void initState() {
     //Carregando a tela inicial por 3 segundos
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, "/home");
-    });
+    Timer(
+      Duration(seconds: 3),
+      () {
+        Navigator.pushReplacementNamed(context, "/home");
+      },
+    );
   }
 
   @override
