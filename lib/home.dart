@@ -1,6 +1,6 @@
 import 'package:WhatsAppClone/compomentes/home/floating_button_chamadas.dart';
 import 'package:WhatsAppClone/compomentes/home/floating_button_status.dart';
-import 'package:WhatsAppClone/compomentes/pop_up_menu_home.dart';
+import 'package:WhatsAppClone/compomentes/pop_up_menu.dart';
 import 'package:WhatsAppClone/compomentes/pesquisa.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/camera_screen.dart';
