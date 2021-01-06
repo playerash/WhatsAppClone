@@ -1,4 +1,5 @@
-import 'package:WhatsAppClone/compomentes/conversa_selecinada.dart';
+import 'package:WhatsAppClone/compomentes/contato_conversa/adicionar_conversa.dart';
+import 'package:WhatsAppClone/compomentes/contato_conversa/card_contatos_conversa.dart';
 import 'package:WhatsAppClone/compomentes/pop_up_menu.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/chat_screen.dart';
@@ -41,46 +42,7 @@ class _BotaoConversaState extends State<BotaoConversa> {
         color: Colors.white,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green,
-                    child: Icon(
-                      Icons.group,
-                      color: Colors.white,
-                    ),
-                    radius: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Novo grupo"),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green,
-                    child: Icon(
-                      Icons.person_add,
-                      color: Colors.white,
-                    ),
-                    radius: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Novo contato"),
-                  )
-                ],
-              ),
-            ),
+            AdicionarConversa(),
             ...widget._contato.map(
               (contato) => GestureDetector(
                 behavior: HitTestBehavior.translucent,
@@ -92,25 +54,7 @@ class _BotaoConversaState extends State<BotaoConversa> {
                     ),
                   );
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8.0,
-                    bottom: 8,
-                    left: 8,
-                  ),
-                  child: Container(
-                    child: Row(
-                      children: [
-                        ConversaChat(contato.imagem),
-                        Text(
-                          contato.nome,
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                child: CardContatoConversa(contato)
               ),
             )
           ],
