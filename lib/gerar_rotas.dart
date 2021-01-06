@@ -19,8 +19,12 @@ class GerarRotas {
     switch (settings.name) {
       case "/home":
         return MaterialPageRoute(
-          builder: (_) =>
-              Home(cameras, _contatoConversa, _contatoChamada, _contatoStatus),
+          builder: (_) => Home(
+            cameras,
+            _contatoConversa,
+            _contatoChamada,
+            _contatoStatus,
+          ),
         );
       case "/camera":
         return MaterialPageRoute(
