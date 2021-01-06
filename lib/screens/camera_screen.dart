@@ -1,3 +1,4 @@
+import 'package:WhatsAppClone/compomentes/camera_screen/botoes_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
@@ -28,7 +29,6 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     //enquanto a camera não carrega
     if (!_cameraController.value.isInitialized) {
       return Container(
@@ -40,51 +40,15 @@ class _CameraScreenState extends State<CameraScreen> {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Container(
-            width: double.infinity,
-            height: size.height,
-            child: AspectRatio(
-              aspectRatio: _cameraController.value.aspectRatio,
-              // Faz com que a camera seja visualizada na tela
-              child: CameraPreview(
-                _cameraController,
-              ),
-            ),
+          CameraPreview(
+            _cameraController,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.flash_off,
-                        color: Colors.white,
-                        size: 25,
-                      ),
-                      onPressed: () {},
-                    ),
-                    Container(
-                      height: size.width / 5,
-                      width: size.height / 5,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2),
-                          shape: BoxShape.circle),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.switch_camera,
-                        color: Colors.white,
-                        size: 25,
-                      ),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-              ),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: BotoesCamera()),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
