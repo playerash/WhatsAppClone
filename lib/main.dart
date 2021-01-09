@@ -1,11 +1,9 @@
 import 'package:WhatsAppClone/gerar_rotas.dart';
 import 'package:WhatsAppClone/screens/abertura_screen.dart';
-import 'package:WhatsAppClone/services/authservice.dart';
 import 'package:camera/camera.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import './screens/login_numero.dart';
+
 
 List<CameraDescription> cameras; // para listar as cameras do celular
 Future main() async {
@@ -30,7 +28,7 @@ Future main() async {
         ),
         initialRoute: "/",
         onGenerateRoute: GerarRotas(cameras).geradorRotas,
-        home: AuthService().handleAuth()
+        home: AberturaScreen(cameras)
         ),
   );
 }

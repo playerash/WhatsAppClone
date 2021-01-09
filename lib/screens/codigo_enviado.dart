@@ -13,11 +13,14 @@ class CodigoEnviado extends StatefulWidget {
 }
 
 class _CodigoEnviadoState extends State<CodigoEnviado> {
-  String idVerificacao;
+  String idVerificacao, smsCode;
+  bool codeEnviado = false;
   Future<void> verificarNumero(numeroTelefone) async {
     final PhoneVerificationCompleted verificado =
         (AuthCredential authResultado) {
       AuthService().signIn(authResultado);
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => AuthService().handleAuth()));
     };
 
     final PhoneVerificationFailed veriFalho =
@@ -27,6 +30,9 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
 
     final PhoneCodeSent smsCodeEnviado = (String verId, [int envioForcado]) {
       idVerificacao = verId;
+      setState(() {
+        codeEnviado = true;
+      });
     };
 
     final PhoneCodeAutoRetrievalTimeout smsAtrasou = (String verId) {
@@ -43,10 +49,9 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
-       verificarNumero(widget.numeroTelefone);
+    verificarNumero(widget.numeroTelefone);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -69,23 +74,64 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
       body: Column(
         children: [
           Text(
-              "Aguardando para detectar automaticamente um SMS enviado para ${widget.numeroTelefone}."),
-          TextField(
-            decoration: InputDecoration(hintText: "--- ---"),
-            inputFormatters: [MaskedInputFormater("### ###")],
+            "Aguardando para detectar automaticamente um SMS enviado para ${widget.numeroTelefone}.",
           ),
-          Text("Insira o código de 6 digitos"),
+          Container(
+            width: 55,
+            child: TextField(
+              onChanged: (value) {
+                print(smsCode);
+                setState(
+                  () {
+                    smsCode = value;
+                  },
+                );
+                AuthService().signInComCode(smsCode, idVerificacao);
+              },
+              decoration: InputDecoration(
+                  hintText: "--- ---", hintStyle: TextStyle(fontSize: 30)),
+              inputFormatters: [
+                MaskedInputFormater("######"),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text("Insira o código de 6 digitos"),
+          ),
           FlatButton(
             onPressed: () {},
             child: Row(
-              children: [Icon(Icons.chat), Text("Reenviar SMS")],
+              children: [
+                Icon(
+                  Icons.chat,
+                  color: Color(0xFF075E54),
+                ),
+                Text(
+                  "Reenviar SMS",
+                  style: TextStyle(
+                    color: Color(0xFF075E54),
+                  ),
+                ),
+              ],
             ),
           ),
           DividerConfigurado(),
           FlatButton(
             onPressed: () {},
             child: Row(
-              children: [Icon(Icons.phone), Text("Me ligue")],
+              children: [
+                Icon(
+                  Icons.phone,
+                  color: Color(0xFF075E54),
+                ),
+                Text(
+                  "Me ligue",
+                  style: TextStyle(
+                    color: Color(0xFF075E54),
+                  ),
+                ),
+              ],
             ),
           )
         ],

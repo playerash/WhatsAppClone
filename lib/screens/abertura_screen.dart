@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:WhatsAppClone/services/authservice.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,12 @@ class _AberturaScreenState extends State<AberturaScreen> {
     Timer(
       Duration(seconds: 3),
       () {
-        Navigator.pushReplacementNamed(context, "/home");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AuthService().handleAuth(),
+          ),
+        );
       },
     );
   }

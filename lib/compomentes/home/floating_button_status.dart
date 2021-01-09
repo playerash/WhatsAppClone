@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:WhatsAppClone/services/authservice.dart';
 
 class FloatingButtonStatus extends StatefulWidget {
   @override
@@ -25,7 +26,9 @@ class _FloatingButtonStatusState extends State<FloatingButtonStatus> {
                 color: Color(0xff4f7477),
                 size: size.width / 10,
               ),
-              onPressed: () {},
+              onPressed: () {
+                AuthService().signOut();
+              },
             ),
           ),
         ),
