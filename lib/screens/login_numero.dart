@@ -1,10 +1,28 @@
+import 'package:WhatsAppClone/compomentes/login_numero/inserir_numero.dart';
+import 'package:WhatsAppClone/services/authservice.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginNumero extends StatelessWidget {
+class LoginNumero extends StatefulWidget {
+  @override
+  _LoginNumeroState createState() => _LoginNumeroState();
+}
+
+class _LoginNumeroState extends State<LoginNumero> {
+  final TextEditingController _controlerNumeroPais = TextEditingController(
+    text: "55",
+  );
+
+  final TextEditingController _controlerNumeroUsuario = TextEditingController();
+
+  String numeroTelefone;
+
+  String smsCode;
+
+  String idVerificacao;
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController numeroPais = TextEditingController(text: "55");
-    TextEditingController numeroUsuario = TextEditingController();
     List<DropdownMenuItem<dynamic>> dropdown = [
       DropdownMenuItem(
         child: Text("Brasil"),
@@ -53,7 +71,7 @@ class LoginNumero extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: TextField(
-                    controller: numeroPais,
+                    //controller: _controlerNumeroPais,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -64,8 +82,13 @@ class LoginNumero extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: TextField(
-                    controller: numeroUsuario,
-                    keyboardType: TextInputType.number,
+                    //controller: _controlerNumeroUsuario,
+                    onChanged: (value) {
+                      setState(() {
+                        numeroTelefone = value;
+                      });
+                    },
+                    keyboardType: TextInputType.phone,
                   ),
                 ),
                 Expanded(
@@ -76,11 +99,14 @@ class LoginNumero extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 150),
-              child: Text("Sujeita a cobranças de tarifas de SMS de sua operadora"),
+              child: Text(
+                  "Sujeita a cobranças de tarifas de SMS de sua operadora"),
             ),
             FittedBox(),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                verificarNumero(numeroTelefone);
+              },
               child: Text(
                 "AVANÇAR",
                 style: TextStyle(color: Colors.white),
@@ -89,6 +115,35 @@ class LoginNumero extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> verificarNumero(numeroTelefone) async {
+    final PhoneVerificationCompleted verificado =
+        (AuthCredential authResultado) {
+      AuthService().signIn(authResultado);
+    };
+
+    final PhoneVerificationFailed veriFalho =
+        (FirebaseAuthException authException) {
+      print("${authException.message}");
+    };
+
+    final PhoneCodeSent smsCodeEnviado = (String verId, [int envioForcado]) {
+      idVerificacao = verId;
+    };
+
+    final PhoneCodeAutoRetrievalTimeout smsAtrasou = (String verId) {
+      idVerificacao = verId;
+    };
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: numeroTelefone,
+      timeout: Duration(seconds: 30),
+      verificationCompleted: verificado,
+      verificationFailed: veriFalho,
+      codeSent: smsCodeEnviado,
+      codeAutoRetrievalTimeout: smsAtrasou,
     );
   }
 }
