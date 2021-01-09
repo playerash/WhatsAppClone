@@ -1,3 +1,4 @@
+import 'package:WhatsAppClone/models/usuario.dart';
 import 'package:flutter/material.dart';
 
 class FloatingButtonChamadas extends StatefulWidget {
@@ -24,7 +25,10 @@ class _FloatingButtonChamadasState extends State<FloatingButtonChamadas> {
                 color: Color(0xff4f7477),
                 size: size.width / 10,
               ),
-              onPressed: () {},
+              onPressed: () {
+                print(usuario.numero);
+                print(usuario.nome);
+              },
             ),
           ),
         ),

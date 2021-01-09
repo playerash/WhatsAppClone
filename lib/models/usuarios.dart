@@ -1,7 +1,16 @@
 class Contato {
   String nome;
+  String numero;
   String imagem;
   Contato(this.nome, this.imagem);
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = {
+      "nome": this.nome,
+      "numero": this.numero,
+    };
+    return map;
+  }
 }
 
 class ContatoConversa extends Contato {

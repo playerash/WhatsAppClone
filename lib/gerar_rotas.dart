@@ -1,5 +1,6 @@
 import 'package:WhatsAppClone/home.dart';
 import 'package:WhatsAppClone/models/usuarios.dart';
+import 'package:WhatsAppClone/screens/dados_perfil.dart';
 import 'compomentes/mocks.dart' as mocks;
 import 'package:WhatsAppClone/screens/camera_screen.dart';
 import 'package:WhatsAppClone/screens/contatos_chamadas.dart';
@@ -41,6 +42,10 @@ class GerarRotas {
       case "/contatos_chamada":
         return MaterialPageRoute(
           builder: (_) => ListaChamada(_contatoChamada),
+        );
+        case "/editar_perfil":
+        return MaterialPageRoute(
+          builder: (_) => DadosPerfil(),
         );
     }
   }

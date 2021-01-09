@@ -13,11 +13,10 @@ class _LoginNumeroState extends State<LoginNumero> {
   );
 
   final TextEditingController _controlerNumeroUsuario = TextEditingController();
-
+  String numeroTelefone;
   @override
   Widget build(BuildContext context) {
-    String numeroTelefone =
-        _controlerNumeroPais.text + _controlerNumeroUsuario.text;
+    numeroTelefone = _controlerNumeroPais.text + _controlerNumeroUsuario.text;
     List<DropdownMenuItem<dynamic>> dropdown = [
       DropdownMenuItem(
         child: Text("Brasil"),

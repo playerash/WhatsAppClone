@@ -1,5 +1,8 @@
 import 'package:WhatsAppClone/home.dart';
+import 'package:WhatsAppClone/models/usuario.dart';
+import 'package:WhatsAppClone/models/usuarios.dart';
 import 'package:WhatsAppClone/screens/login_numero.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:WhatsAppClone/compomentes/mocks.dart';
@@ -24,22 +27,34 @@ class AuthService {
     FirebaseAuth.instance.signOut();
   }
 
-  signIn(AuthCredential credential) {
-    FirebaseAuth.instance.signInWithCredential(credential);
+  dadosUsuario(Usuario usuario) {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    FirebaseAuth firebaseUser = FirebaseAuth.instance;
+    db.collection("usuarios").doc(firebaseUser.currentUser.uid).set(usuario.toMap());
   }
 
-  signInComCode(smsCode, verId) {
+  signIn(AuthCredential credential, context) {
+    FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((firebaseUser) {});
+
+    Navigator.pushReplacementNamed(context, "/editar_perfil");
+  }
+
+  //Verificação manual do numero
+  signInComCode(smsCode, verId, context) {
     AuthCredential credential = PhoneAuthProvider.credential(
       verificationId: verId,
       smsCode: smsCode,
     );
-    signIn(credential);
+    signIn(credential, context);
   }
 
-  Future<void> verificarNumero(numeroTelefone, idVerificacao) async {
+//Verificação automatica de numero
+  Future<void> verificarNumero(numeroTelefone, idVerificacao, context) async {
     final PhoneVerificationCompleted verificado =
         (AuthCredential authResultado) {
-      AuthService().signIn(authResultado);
+      AuthService().signIn(authResultado, context);
     };
 
     final PhoneVerificationFailed veriFalho =

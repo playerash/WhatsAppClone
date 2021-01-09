@@ -1,6 +1,5 @@
 import 'package:WhatsAppClone/compomentes/divider_configurado.dart';
 import 'package:WhatsAppClone/services/authservice.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
@@ -15,43 +14,10 @@ class CodigoEnviado extends StatefulWidget {
 class _CodigoEnviadoState extends State<CodigoEnviado> {
   String idVerificacao, smsCode;
   bool codeEnviado = false;
-  Future<void> verificarNumero(numeroTelefone) async {
-    final PhoneVerificationCompleted verificado =
-        (AuthCredential authResultado) {
-      AuthService().signIn(authResultado);
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => AuthService().handleAuth()));
-    };
-
-    final PhoneVerificationFailed veriFalho =
-        (FirebaseAuthException authException) {
-      print("${authException.message}");
-    };
-
-    final PhoneCodeSent smsCodeEnviado = (String verId, [int envioForcado]) {
-      idVerificacao = verId;
-      setState(() {
-        codeEnviado = true;
-      });
-    };
-
-    final PhoneCodeAutoRetrievalTimeout smsAtrasou = (String verId) {
-      idVerificacao = verId;
-    };
-
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: numeroTelefone,
-      timeout: Duration(seconds: 30),
-      verificationCompleted: verificado,
-      verificationFailed: veriFalho,
-      codeSent: smsCodeEnviado,
-      codeAutoRetrievalTimeout: smsAtrasou,
-    );
-  }
-
+  
   @override
   Widget build(BuildContext context) {
-    verificarNumero(widget.numeroTelefone);
+    AuthService().verificarNumero(widget.numeroTelefone, idVerificacao, context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -86,7 +52,7 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
                     smsCode = value;
                   },
                 );
-                AuthService().signInComCode(smsCode, idVerificacao);
+                AuthService().signInComCode(smsCode, idVerificacao, context);
               },
               decoration: InputDecoration(
                   hintText: "--- ---", hintStyle: TextStyle(fontSize: 30)),
