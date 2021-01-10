@@ -1,3 +1,6 @@
+import 'package:WhatsAppClone/compomentes/codigo_enviado/appbar_codigo_enviado.dart';
+import 'package:WhatsAppClone/compomentes/codigo_enviado/flatbutton_meligue.dart';
+import 'package:WhatsAppClone/compomentes/codigo_enviado/flatbutton_reenviar.dart';
 import 'package:WhatsAppClone/compomentes/divider_configurado.dart';
 import 'package:WhatsAppClone/services/authservice.dart';
 import 'package:flutter/material.dart';
@@ -14,28 +17,16 @@ class CodigoEnviado extends StatefulWidget {
 class _CodigoEnviadoState extends State<CodigoEnviado> {
   String idVerificacao, smsCode;
   bool codeEnviado = false;
-  
+
   @override
   Widget build(BuildContext context) {
-    AuthService().verificarNumero(widget.numeroTelefone, idVerificacao, context);
+    AuthService()
+        .verificarNumero(widget.numeroTelefone, idVerificacao, context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "Confirmar ${widget.numeroTelefone}",
-          style: TextStyle(
-            color: Color(0xFF075E54),
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Icon(
-            Icons.more_vert,
-            color: Color(0xFF075E54),
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppbarCodigoEnviado(widget.numeroTelefone),
       ),
       body: Column(
         children: [
@@ -55,7 +46,9 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
                 AuthService().signInComCode(smsCode, idVerificacao, context);
               },
               decoration: InputDecoration(
-                  hintText: "--- ---", hintStyle: TextStyle(fontSize: 30)),
+                hintText: "--- ---",
+                hintStyle: TextStyle(fontSize: 30),
+              ),
               inputFormatters: [
                 MaskedInputFormater("######"),
               ],
@@ -65,41 +58,9 @@ class _CodigoEnviadoState extends State<CodigoEnviado> {
             padding: const EdgeInsets.all(16.0),
             child: Text("Insira o código de 6 digitos"),
           ),
-          FlatButton(
-            onPressed: () {},
-            child: Row(
-              children: [
-                Icon(
-                  Icons.chat,
-                  color: Color(0xFF075E54),
-                ),
-                Text(
-                  "Reenviar SMS",
-                  style: TextStyle(
-                    color: Color(0xFF075E54),
-                  ),
-                ),
-              ],
-            ),
-          ),
           DividerConfigurado(),
-          FlatButton(
-            onPressed: () {},
-            child: Row(
-              children: [
-                Icon(
-                  Icons.phone,
-                  color: Color(0xFF075E54),
-                ),
-                Text(
-                  "Me ligue",
-                  style: TextStyle(
-                    color: Color(0xFF075E54),
-                  ),
-                ),
-              ],
-            ),
-          )
+          FlatButtonReenviar(),
+          FlatButtonMeLigue(),
         ],
       ),
     );

@@ -10,7 +10,6 @@ class DadosPerfil extends StatefulWidget {
 }
 
 class _DadosPerfilState extends State<DadosPerfil> {
- // TextEditingController _nomeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
