@@ -14,8 +14,8 @@ Future main() async {
 
   runApp(
     MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Color(0xFF075E54),
           accentColor: Color(0xFF25D366),
@@ -29,7 +29,7 @@ Future main() async {
         initialRoute: "/",
         onGenerateRoute: GerarRotas(cameras).geradorRotas,
         home: AberturaScreen(cameras)
-        ),
+    ),
   );
 }
 

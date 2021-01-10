@@ -30,7 +30,10 @@ class AuthService {
   dadosUsuario(Usuario usuario) {
     FirebaseFirestore db = FirebaseFirestore.instance;
     FirebaseAuth firebaseUser = FirebaseAuth.instance;
-    db.collection("usuarios").doc(firebaseUser.currentUser.uid).set(usuario.toMap());
+    db
+        .collection("usuarios")
+        .doc(firebaseUser.currentUser.uid)
+        .update(usuario.toMap());
   }
 
   signIn(AuthCredential credential, context) {

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class ImagemPerfil extends StatefulWidget {
 class _ImagemPerfilState extends State<ImagemPerfil> {
   File _image;
   String _statusUpload;
+  var _imagemRecuperada;
 
   final picker = ImagePicker();
   //String idUsuarioLogado = FirebaseAuth.instance.currentUser.uid;
@@ -27,19 +29,45 @@ class _ImagemPerfilState extends State<ImagemPerfil> {
     task.snapshotEvents.listen(
       (event) {
         if (event.state == TaskState.running) {
-          setState(() {
-            _statusUpload = "em progresso";
-          });
+          setState(
+            () {
+              _statusUpload = "em progresso";
+            },
+          );
         } else if (event.state == TaskState.success) {
-          setState(() {
-            _statusUpload = "sucessinho bb";
-          });
+          setState(
+            () {
+              _statusUpload = "sucessinho bb";
+            },
+          );
         }
-        task.then((snapshot) {
-          print("completou");
-        });
+        task.then(
+          (snapshot) {
+            _recuperarUrlImagem(snapshot);
+          },
+        );
       },
     );
+  }
+
+  Future _recuperarUrlImagem(TaskSnapshot snapshot) async {
+    String url = await snapshot.ref.getDownloadURL();
+    print(url);
+    _atualizarImagemFirestorage(url);
+    setState(
+      () {
+        _imagemRecuperada = url;
+      },
+    );
+  }
+
+  _atualizarImagemFirestorage(String url) {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    Map<String, dynamic> dadosAtualizar = {"urlImagem": url};
+    db
+        .collection("usuarios")
+        .doc(firebaseUser.currentUser.uid)
+        .update(dadosAtualizar);
   }
 
   Future _pegarPhoto() async {
