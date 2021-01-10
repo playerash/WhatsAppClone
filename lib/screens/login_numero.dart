@@ -1,4 +1,6 @@
-import 'package:WhatsAppClone/screens/codigo_enviado.dart';
+import 'package:WhatsAppClone/compomentes/login_numero/app_bar_login_numero.dart';
+import 'package:WhatsAppClone/compomentes/login_numero/botao_login_numero.dart';
+import 'package:WhatsAppClone/compomentes/login_numero/dropdown_login_numero.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +8,6 @@ class LoginNumero extends StatefulWidget {
   @override
   _LoginNumeroState createState() => _LoginNumeroState();
 }
-
 class _LoginNumeroState extends State<LoginNumero> {
   final TextEditingController _controlerNumeroPais = TextEditingController(
     text: "+55 ",
@@ -24,20 +25,9 @@ class _LoginNumeroState extends State<LoginNumero> {
     ];
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "Insira seu número de telefone",
-          style: TextStyle(color: Color(0xFF075E54)),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Icon(
-            Icons.more_vert,
-            color: Color(0xFF075E54),
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBarLoginNumero(),
       ),
       body: Container(
         width: double.infinity,
@@ -46,33 +36,18 @@ class _LoginNumeroState extends State<LoginNumero> {
             Text(
               "o WhatsApp enviará uma mensagem SMS para confirmar seu número de telefone.",
             ),
-            Container(
-              width: 170,
-              child: DropdownButton(
-                items: dropdown,
-                hint: Center(
-                  child: Text("Brasil"),
-                ),
-                isExpanded: true,
-              ),
-            ),
+            DropdownLoginNumero(dropdown),
             Row(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: FittedBox(),
-                ),
+                Spacer(),
                 Expanded(
                   flex: 2,
                   child: TextField(
                     controller: _controlerNumeroPais,
-                    //keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.number,
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: FittedBox(),
-                ),
+                Spacer(),
                 Expanded(
                   flex: 4,
                   child: TextField(
@@ -86,10 +61,7 @@ class _LoginNumeroState extends State<LoginNumero> {
                     },
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: FittedBox(),
-                ),
+                Spacer()
               ],
             ),
             Padding(
@@ -98,22 +70,7 @@ class _LoginNumeroState extends State<LoginNumero> {
                   "Sujeita a cobranças de tarifas de SMS de sua operadora"),
             ),
             FittedBox(),
-            RaisedButton(
-              onPressed: () {
-                print(numeroTelefone);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CodigoEnviado(numeroTelefone),
-                  ),
-                );
-                //verificarNumero(numeroTelefone);
-              },
-              child: Text(
-                "AVANÇAR",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
+            BotaoLoginNumero(numeroTelefone)
           ],
         ),
       ),
